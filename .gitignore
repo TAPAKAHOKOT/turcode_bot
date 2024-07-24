@@ -1,0 +1,8 @@
+ansivenv/*
+venv/*
+example.py
+hosts
+index.html
+settings.json
+transfer_file.yml
+vault.yml
