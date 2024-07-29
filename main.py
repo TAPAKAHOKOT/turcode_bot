@@ -163,6 +163,7 @@ def tg_get_updates():
                     '/stats - получить статистику\n'
                     '/set_min_amount <number> - установить минимальную сумму резервирования платежа, <number> - любое целое число, можно использовать пробел как разделитель\n'
                     '/set_max_amount <number> - установить максимальную сумму резервирования платежа, <number> - любое целое число, можно использовать пробел как разделитель\n'
+                    '/set_payouts_limit <number> - установить лимит кол-ва платежей, <number> - любое целое число, можно использовать пробел как разделитель\n'
                     '/auth <text> - установить куки авторизации'
                 )
             elif text.startswith('/run'):
@@ -178,7 +179,8 @@ def tg_get_updates():
                     chat_id, 
                     f'Штука запущена: {'да' if settings['is_running'] else 'нет'}\n'
                     f'Мин. сумма резервирования: {format_number(settings.get('min_amount', 0))}\n'
-                    f'Макс. сумма резервирования: {format_number(settings.get('max_amount', 0))}'
+                    f'Макс. сумма резервирования: {format_number(settings.get('max_amount', 0))}\n'
+                    f'Лимит кол-ва платежей: {format_number(settings['payouts_limit'])}'
                 )
             elif text.startswith('/stats'):
                 metric_mapping = {
@@ -217,6 +219,16 @@ def tg_get_updates():
                     settings['max_amount'] = new_max_amount
                     save_settings(FILE_PATH, settings)
                     send_msg(chat_id, f'Макс. сумма резервирования: {format_number(settings['max_amount'])}')
+            elif text.startswith('/set_payouts_limit'):
+                new_payouts_limits = text.replace('/set_payouts_limit ', '')
+                try:
+                    new_payouts_limits = int(new_payouts_limits.replace(' ', ''))
+                except ValueError:
+                    send_msg(chat_id, 'Неверный формат ввода, пример: /set_payouts_limit 10')
+                else:
+                    settings['payouts_limit'] = new_payouts_limits
+                    save_settings(FILE_PATH, settings)
+                    send_msg(chat_id, f'Лимит кол-ва платежей: {format_number(settings['payouts_limit'])}')
             elif text.startswith('/auth'):
                 auth_cookie = text.replace('/auth', '').strip().replace('auth=', '')
                 settings['auth_cookie'] = auth_cookie
@@ -284,6 +296,7 @@ default_settings = {
     "auth_cookie": "",
     "is_running": False,
     "update_offset": None,
+    "payouts_limit": 10,
 }
 FILE_PATH = 'settings.json'
 BASE_URL = 'https://api.turcode.app'
@@ -324,8 +337,9 @@ def get_payouts(session):
             headers=HEADERS,
         )
         auth_cookie = request.headers.get('Set-Cookie')
-        auth_cookie = auth_cookie.replace('auth=', '').strip().replace('auth=', '')
-        settings['auth_cookie'] = auth_cookie
+        if auth_cookie is not None:
+            auth_cookie = auth_cookie.replace('auth=', '').strip().replace('auth=', '')
+            settings['auth_cookie'] = auth_cookie
     except r.exceptions.RequestException as e:
         log_error('Ошибка запроса:', e)
         return []
@@ -354,6 +368,9 @@ def get_payouts(session):
 # Забираем платеж
 def claim_payout(payout) -> bool:
     global notifications, metrics
+
+    same_payouts_count = get_same_payouts_count(payout['operation_id'], payout['user_id'])
+
     notifications['admins'].append(f'Пробую забрать платеж ({time.time()})')
     form_data = {
         'id': payout['id'],
@@ -390,6 +407,9 @@ def claim_payout(payout) -> bool:
             f'Сумма - 💰{payout['amount']}💰\n'
             f'Карта - 💸{payout['card']}💸'
         )
+        if same_payouts_count > 0:
+            success_msg += f'\n\n‼️Кажется, этот платеж уже забирался‼️'
+
         notifications['admins'].append(success_msg)
         notifications['only_taken'].append(success_msg)
 
@@ -403,6 +423,15 @@ def claim_payout(payout) -> bool:
 # Получаем обработанные платежи
 def load_payouts():
     global notifications
+
+    claimed_count = 0
+    all_payouts = get_payouts(session)
+    for row in all_payouts:
+        claimed_count += 0 if not row[2] else 1
+
+    if claimed_count >= settings.get('payouts_limit', 10):
+        return []
+
     payouts = []
     for row in get_payouts(session):
         is_able = not row[2]
@@ -419,6 +448,8 @@ def load_payouts():
             'amount': row[4],
             'card': row[7],
             'requests': row[8],
+            'operation_id': row[14],
+            'user_id': row[15],
         }
 
         log_info(f'Найден платеж: {payout}')
@@ -432,9 +463,11 @@ def load_payouts():
 def get_clear_notifications():
     return {'admins': [], 'only_taken': []}
 
-def run_tg_bot():
+def run_extra_actions():
     global notifications, metrics
     tg_get_updates()
+
+    # notify
     notify_bulk_admins(notifications['admins'])
     notify_bulk_watchers(notifications['only_taken'])
     notifications = get_clear_notifications()
@@ -455,9 +488,9 @@ while True:
     if is_running:
         cur_time = int(time.time())
         if cur_time % 10 == 0:
-            run_tg_bot()
+            run_extra_actions()
     else:
-        run_tg_bot()
+        run_extra_actions()
         time.sleep(0.5)
         continue
 
