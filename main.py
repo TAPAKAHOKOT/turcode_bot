@@ -7,7 +7,7 @@ from random import choices
 import signal
 import sys
 import os
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, utcnow
 
 sys.stdout.reconfigure(encoding='utf-8')
 load_dotenv()
@@ -44,7 +44,7 @@ def write_stat(metric, value):
     stat = {
         'metric': metric,
         'value': value,
-        'timestamp': datetime.utcnow().timestamp()
+        'timestamp': utcnow().timestamp()
     }
     data.append(stat)
 
@@ -352,7 +352,7 @@ def get_payouts(session):
 
 
 # Забираем платеж
-def claim_payout(payout):
+def claim_payout(payout) -> bool:
     global notifications, metrics
     notifications['admins'].append(f'Пробую забрать платеж ({time.time()})')
     form_data = {
@@ -373,7 +373,7 @@ def claim_payout(payout):
         )
     except r.exceptions.RequestException as e:
         log_error('Ошибка запроса:', e)
-        return
+        return False
 
     log_info(request.status_code, request.text)
 
@@ -381,7 +381,7 @@ def claim_payout(payout):
         request_data = request.json()
     except r.exceptions.JSONDecodeError as e:
         log_error(f'Ошибка запроса  {request.status_code} {request.text}:', e)
-        return
+        return False
 
     if request_data['status']:
         metrics.append({'metric': 'payout_successed', 'value': payout['amount']})
@@ -392,8 +392,12 @@ def claim_payout(payout):
         )
         notifications['admins'].append(success_msg)
         notifications['only_taken'].append(success_msg)
+
+        return True
     else:
         metrics.append({'metric': 'payout_failed', 'value': payout['amount']})
+
+    return False
 
 
 # Получаем обработанные платежи
@@ -457,8 +461,13 @@ while True:
         time.sleep(0.5)
         continue
 
+    calimed_payouts_count = 0
     for payout in load_payouts():
-        claim_payout(payout)
+        if claim_payout(payout):
+            calimed_payouts_count += 1
+
+        if calimed_payouts_count >= settings.get('payouts_limit', 10):
+            break
 
 
 
