@@ -7,7 +7,8 @@ from random import choices
 import signal
 import sys
 import os
-from datetime import datetime, timedelta, utcnow
+from datetime import datetime, timedelta
+import datetime
 
 sys.stdout.reconfigure(encoding='utf-8')
 load_dotenv()
@@ -44,7 +45,7 @@ def write_stat(metric, value):
     stat = {
         'metric': metric,
         'value': value,
-        'timestamp': utcnow().timestamp()
+        'timestamp': datetime.now(datetime.UTC)
     }
     data.append(stat)
 
