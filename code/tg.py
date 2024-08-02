@@ -34,6 +34,9 @@ class Tg:
         self.settings = settings
 
     def format_number(self, num):
+        if num is None:
+            return '-'
+
         num = round(num, 2)
         return '{:,}'.format(num).replace(',', ' ')
 
@@ -111,11 +114,6 @@ class Tg:
                         f'Лимит кол-ва платежей: {self.format_number(self.settings['payouts_limit'])}'
                     )
                 elif text.startswith('/stats'):
-                    metric_mapping = {
-                        'payout_successed': 'Платеж забран успешно',
-                        'payout_failed': 'Платеж не забран',
-                    }
-
                     send_stats = True
                     stats_date = text.replace('/stats', '').strip()
                     if stats_date:
@@ -129,19 +127,21 @@ class Tg:
                         stats_date = None
 
                     if send_stats:
-                        stats_dict = get_stats(stats_date)
+                        stats_dict = get_stats(self.settings, stats_date)
                         for date, metrics in stats_dict.items():
-                            self.send_msg(chat_id, f"Дата: {date}")
-                            for metric, values in metrics.items():
-                                metric = metric_mapping[
-                                    metric] if metric in metric_mapping else metric
-                                self.send_msg(
-                                    chat_id,
-                                    f"Метрика: {metric}\n\n"
-                                    f"Сумма: {self.format_number(values['total'])}\n"
-                                    f"Среднее: {self.format_number(values['average'])}\n"
-                                    f"Кол-во: {self.format_number(values['count'])}"
-                                )
+                            self.send_msg(
+                                chat_id,
+                                f"Дата: {date}\n\n" + "-" * 30 +
+                                f"\n\nПлатеж забран успешно ✅\n\n"
+                                f"Сумма: {self.format_number(metrics['success_payouts_amount_sum'])}\n"
+                                f"Среднее: {self.format_number(metrics['success_payouts_avg'])}\n"
+                                f"Кол-во: {self.format_number(metrics['success_payouts_count'])}\n\n"
+                                + "-" * 30 +
+                                f"\n\nПлатеж не забран ❌\n\n"
+                                f"Сумма: {self.format_number(metrics['fail_payouts_amount_sum'])}\n"
+                                f"Среднее: {self.format_number(metrics['fail_payouts_avg'])}\n"
+                                f"Кол-во: {self.format_number(metrics['fail_payouts_count'])}\n\n"
+                            )
                         if not stats_dict:
                             self.send_msg(chat_id, 'Статистики нет')
                 elif text.startswith('/set_min_amount'):

@@ -1,71 +1,51 @@
-import json
-import os
-from datetime import datetime, timedelta, UTC
+from datetime import datetime, timedelta
+
+from sqlalchemy.orm import Session
+
+from models import Payout, PayoutActionEnum
 
 
-def get_stats(stat_date=None):
+def get_stats(settings, stat_date=None):
     # Определяем сегодняшнюю дату и даты за последние 5 дней
     if stat_date is not None:
-        dates = [stat_date.strftime('%d.%m.%y')]
+        dates = [stat_date.strftime('%d.%m.%Y')]
     else:
         today = datetime.now().date()
-        dates = [(today - timedelta(days=i)).strftime('%d.%m.%y') for i in
-                 range(7)]
+        dates = [(today - timedelta(days=i)).strftime('%d.%m.%Y') for i in range(7)]
 
     stats = {}
-    for date in dates:
-        filename = f'stats/{date}.json'
-        if os.path.exists(filename):
-            with open(filename, 'r') as file:
-                data = json.load(file)
+    with Session(settings.engine) as session, session.begin():
+        for date in dates:
+            success_payouts_count = Payout.get_count_by_date_and_action(
+                session,
+                date,
+                PayoutActionEnum.SUCCESS.code,
+            )
+            success_payouts_amount_sum = Payout.get_amount_sum_by_date_and_action(
+                session,
+                date,
+                PayoutActionEnum.SUCCESS.code,
+            )
+            fail_payouts_count = Payout.get_count_by_date_and_action(
+                session,
+                date,
+                PayoutActionEnum.FAIL.code,
+            )
+            fail_payouts_amount_sum = Payout.get_amount_sum_by_date_and_action(
+                session,
+                date,
+                PayoutActionEnum.FAIL.code,
+            )
 
-            daily_stats = {}
-            for entry in data:
-                metric = entry['metric']
-                value = float(entry['value'].replace(',', ''))
-                if metric in daily_stats:
-                    daily_stats[metric]['total'] += value
-                    daily_stats[metric]['count'] += 1
-                else:
-                    daily_stats[metric] = {'total': value, 'count': 1}
-
-            # Вычисляем среднее значение для каждой метрики
-            for metric in daily_stats:
-                total = daily_stats[metric]['total']
-                _count = daily_stats[metric]['count']
-                average = total / _count
-                daily_stats[metric] = {'total': total, 'average': average,
-                                       'count': _count}
-
-            stats[date] = daily_stats
+            if success_payouts_count or fail_payouts_count:
+                stats[date] = {
+                    'success_payouts_count': success_payouts_count,
+                    'success_payouts_amount_sum': success_payouts_amount_sum,
+                    'success_payouts_avg': int(
+                        success_payouts_amount_sum / success_payouts_count) if success_payouts_count else 0,
+                    'fail_payouts_count': fail_payouts_count,
+                    'fail_payouts_amount_sum': fail_payouts_amount_sum,
+                    'fail_payouts_avg': int(fail_payouts_amount_sum / fail_payouts_count) if fail_payouts_count else 0,
+                }
 
     return stats
-
-
-def write_stat(metric, value):
-    # Создаем папку "stats", если она не существует
-    if not os.path.exists('stats'):
-        os.makedirs('stats')
-
-    # Определяем имя файла с сегодняшней датой
-    today = datetime.now().strftime('%d.%m.%y')
-    filename = f'stats/{today}.json'
-
-    # Загружаем данные из файла, если он существует, или создаем новый словарь
-    if os.path.exists(filename):
-        with open(filename, 'r') as file:
-            data = json.load(file)
-    else:
-        data = []
-
-    # Добавляем новую метрику с текущим временем
-    stat = {
-        'metric': metric,
-        'value': value,
-        'timestamp': int(datetime.now(UTC).timestamp())
-    }
-    data.append(stat)
-
-    # Сохраняем данные обратно в файл
-    with open(filename, 'w') as file:
-        json.dump(data, file, indent=4)

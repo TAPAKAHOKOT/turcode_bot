@@ -6,4 +6,5 @@ index.html
 settings.json
 transfer_file.yml
 vault.yml
+*.db
 

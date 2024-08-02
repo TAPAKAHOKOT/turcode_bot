@@ -1,7 +1,9 @@
 import time
 
 import requests as r
+from sqlalchemy.orm import Session
 
+from models import Payout, PayoutActionEnum
 from logger import Logger
 from settings import Settings
 from tg import Tg
@@ -110,21 +112,34 @@ class API:
             self.logger.error(f'Ошибка запроса  {request.status_code} {request.text}:', e)
             return False
 
-        if request_data['status']:
-            self.settings.metrics.append(
-                {'metric': 'payout_successed', 'value': payout['amount']})
-            success_msg = (
-                f'Платеж забран\n'
-                f'Сумма - 💰{payout['amount']}💰\n'
-                f'Карта - 💸{payout['card']}💸'
+        with Session(self.settings.engine) as session, session.begin():
+            operation_payouts_count = Payout.get_count_by_operation_id(session, payout['operation_id'])
+            payout_row = Payout(
+                operation_id=payout.get('operation_id', ''),
+                user_id=payout.get('user_id', ''),
+                amount=int(float(str(payout.get('amount', 0)).replace(',', ''))),
             )
+            if request_data['status']:
+                payout_row.action = PayoutActionEnum.SUCCESS.code
 
-            self.settings.notifications['admins'].append(success_msg)
-            self.settings.notifications['only_taken'].append(success_msg)
+                success_msg = (
+                    f'Платеж забран\n'
+                    f'Сумма - 💰{payout['amount']}💰\n'
+                    f'Карта - 💸{payout['card']}💸'
+                )
 
-            return True
-        else:
-            self.settings.metrics.append({'metric': 'payout_failed', 'value': payout['amount']})
+                if operation_payouts_count > 0:
+                    success_msg += '\n\n‼️Кажется, этот платеж уже забирался‼️'
+
+                self.settings.notifications['admins'].append(success_msg)
+                self.settings.notifications['only_taken'].append(success_msg)
+
+                return True
+            else:
+                payout_row.action = PayoutActionEnum.FAIL.code
+
+            session.add(payout_row)
+            session.flush()
 
         return False
 

@@ -1,14 +1,20 @@
+import os
 import signal
 import sys
 import time
 
 import requests as r
+from sqlalchemy import create_engine
 
 from api import API
 from logger import Logger
+from models import Base
 from settings import Settings
-from stats import write_stat
 from tg import Tg
+
+dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+engine = create_engine(f'sqlite:////{dir_path}/payouts.db')
+Base.metadata.create_all(engine)
 
 sys.stdout.reconfigure(encoding='utf-8')
 logger = Logger()
@@ -25,7 +31,7 @@ signal.signal(signal.SIGINT, onexit)
 signal.signal(signal.SIGTERM, onexit)
 
 # Загрузка настроек
-settings = Settings(logger)
+settings = Settings(engine, logger)
 settings.load()
 
 logger.info('Настройки:', settings)
@@ -39,11 +45,6 @@ def run_extra_actions():
     tg.notify_bulk_admins(settings.notifications['admins'])
     tg.notify_bulk_watchers(settings.notifications['only_taken'])
     settings.clear_notifications()
-
-    # Сохраняем метрики
-    for metric in settings.metrics:
-        write_stat(**metric)
-    settings.clear_metrics()
 
 
 # Приступаем к запуску

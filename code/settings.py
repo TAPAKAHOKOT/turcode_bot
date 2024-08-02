@@ -1,6 +1,8 @@
 import copy
 import json
 
+from sqlalchemy import Engine
+
 from logger import Logger
 
 
@@ -15,10 +17,10 @@ class Settings:
     }
     settings: dict = None
     notifications: dict = None
-    metrics: list = []
     file_path: str = 'settings.json'
 
-    def __init__(self, logger: Logger):
+    def __init__(self, engine: Engine, logger: Logger):
+        self.engine = engine
         self.logger = logger
         self.clear_notifications()
 
@@ -77,6 +79,3 @@ class Settings:
 
     def clear_notifications(self):
         self.notifications = {'admins': [], 'only_taken': []}
-
-    def clear_metrics(self):
-        self.metrics = []
