@@ -121,6 +121,8 @@ class API:
             )
             if request_data['status']:
                 payout_row.action = PayoutActionEnum.SUCCESS.code
+                session.add(payout_row)
+                session.flush()
 
                 success_msg = (
                     f'Платеж забран\n'
@@ -137,9 +139,8 @@ class API:
                 return True
             else:
                 payout_row.action = PayoutActionEnum.FAIL.code
-
-            session.add(payout_row)
-            session.flush()
+                session.add(payout_row)
+                session.flush()
 
         return False
 
