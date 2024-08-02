@@ -158,7 +158,7 @@ def tg_get_updates():
             if text.startswith('/help'):
                 send_msg(
                     chat_id,
-                    'Хелпанем немножечко :)\n\n'
+                    'Хелпанем немножечко :))\n\n'
                     '/help - список команд\n'
                     '/run - включить штуку\n'
                     '/stop - остановить штуку\n'
