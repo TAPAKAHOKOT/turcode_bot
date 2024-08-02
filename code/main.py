@@ -519,11 +519,3 @@ while True:
 
         if calimed_payouts_count >= settings.get('payouts_limit', 10):
             break
-
-
-
-
-
-
-
-
