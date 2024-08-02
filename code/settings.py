@@ -5,7 +5,7 @@ from logger import Logger
 
 
 class Settings:
-    default_settings = {
+    default_settings: dict = {
         "min_amount": 50_000,
         "max_amount": 80_000,
         "auth_cookie": "",
@@ -13,12 +13,32 @@ class Settings:
         "update_offset": None,
         "payouts_limit": 10,
     }
-    settings = None
-    file_path = None
+    settings: dict = None
+    notifications: dict = None
+    metrics: list = []
+    file_path: str = 'settings.json'
 
-    def __init__(self, file_path: str, logger: Logger):
-        self.file_path = file_path
+    def __init__(self, logger: Logger):
         self.logger = logger
+        self.clear_notifications()
+
+    def __setitem__(self, key, value):
+        self.settings[key] = value
+        self.save()
+
+    def __getitem__(self, key):
+        return self.settings[key]
+
+    def __repr__(self):
+        return repr(self.settings)
+
+    def __str__(self):
+        return str(self.settings)
+
+    def get(self, *args, **kwargs):
+        if self.settings is None:
+            return None
+        return self.settings.get(*args, **kwargs)
 
     def save(self):
         """
@@ -55,20 +75,8 @@ class Settings:
             self.settings = copy.deepcopy(self.default_settings)
             self.logger.error(f"Ошибка при загрузке настроек: {e}")
 
-    def __setitem__(self, key, value):
-        self.settings[key] = value
-        self.save()
+    def clear_notifications(self):
+        self.notifications = {'admins': [], 'only_taken': []}
 
-    def __getitem__(self, key):
-        return self.settings[key]
-
-    def __repr__(self):
-        return repr(self.settings)
-
-    def get(self, *args, **kwargs):
-        if self.settings is None:
-            return None
-        return self.settings.get(*args, **kwargs)
-
-    def __str__(self):
-        return str(self.settings)
+    def clear_metrics(self):
+        self.metrics = []
