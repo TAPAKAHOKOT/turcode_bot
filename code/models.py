@@ -41,7 +41,7 @@ class Payout(Base):
     def get_count_by_operation_id(cls, session, operation_id: str) -> int:
         return session.query(func.count(cls.id)).filter(and_(
             cls.operation_id == operation_id,
-            cls.action == PayoutActionEnum.SUCCESS.value,
+            cls.action == PayoutActionEnum.SUCCESS.code,
         )).scalar()
 
     @classmethod
