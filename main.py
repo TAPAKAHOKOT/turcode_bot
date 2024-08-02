@@ -7,8 +7,7 @@ from random import choices
 import signal
 import sys
 import os
-from datetime import datetime, timedelta
-import datetime
+from datetime import datetime, timedelta, UTC
 
 sys.stdout.reconfigure(encoding='utf-8')
 load_dotenv()
@@ -45,7 +44,7 @@ def write_stat(metric, value):
     stat = {
         'metric': metric,
         'value': value,
-        'timestamp': datetime.now(datetime.UTC)
+        'timestamp': int(datetime.now(UTC).timestamp())
     }
     data.append(stat)
 
@@ -53,13 +52,16 @@ def write_stat(metric, value):
     with open(filename, 'w') as file:
         json.dump(data, file, indent=4)
 
-def get_stats():
+def get_stats(stat_date=None):
     # Определяем сегодняшнюю дату и даты за последние 5 дней
-    today = datetime.now().date()
-    dates = [(today - timedelta(days=i)).strftime('%d.%m.%y') for i in range(5)]
-    
-    stats = {}
+    if stat_date is not None:
+        dates = [stat_date.strftime('%d.%m.%y')]
+    else:
+        today = datetime.now().date()
+        dates = [(today - timedelta(days=i)).strftime('%d.%m.%y') for i in range(7)]
 
+
+    stats = {}
     for date in dates:
         filename = f'stats/{date}.json'
         if os.path.exists(filename):
@@ -156,7 +158,7 @@ def tg_get_updates():
             if text.startswith('/help'):
                 send_msg(
                     chat_id,
-                    'Хелпанем немножечко :))\n\n'
+                    'Хелпанем немножечко :)\n\n'
                     '/help - список команд\n'
                     '/run - включить штуку\n'
                     '/stop - остановить штуку\n'
@@ -189,17 +191,32 @@ def tg_get_updates():
                     'payout_failed': 'Платеж не забран',
                 }
 
-                for date, metrics in get_stats().items():
-                    send_msg(chat_id, f"Дата: {date}")
-                    for metric, values in metrics.items():
-                        metric = metric_mapping[metric] if metric in metric_mapping else metric
-                        send_msg(
-                            chat_id, 
-                            f"Метрика: {metric}\n\n"
-                            f"Сумма: {format_number(values['total'])}\n"
-                            f"Среднее: {format_number(values['average'])}\n"
-                            f"Кол-во: {format_number(values['count'])}"
-                        )
+                send_stats = True       
+                stats_date = text.replace('/stats', '').strip()
+                if stats_date:
+                    try:
+                        stats_date = datetime.strptime(stats_date, '%d.%m.%Y').date()
+                    except ValueError:
+                        send_stats = False
+                        send_msg(chat_id, 'Неверный формат даты')
+                else:
+                    stats_date = None
+
+                if send_stats:
+                    stats_dict = get_stats(stats_date)
+                    for date, metrics in stats_dict.items():
+                        send_msg(chat_id, f"Дата: {date}")
+                        for metric, values in metrics.items():
+                            metric = metric_mapping[metric] if metric in metric_mapping else metric
+                            send_msg(
+                                chat_id, 
+                                f"Метрика: {metric}\n\n"
+                                f"Сумма: {format_number(values['total'])}\n"
+                                f"Среднее: {format_number(values['average'])}\n"
+                                f"Кол-во: {format_number(values['count'])}"
+                            )
+                    if not stats_dict:
+                        send_msg(chat_id, 'Статистики нет')
             elif text.startswith('/set_min_amount'):
                 new_min_amount = text.replace('/set_min_amount ', '')
                 try:
@@ -370,7 +387,7 @@ def get_payouts(session):
 def claim_payout(payout) -> bool:
     global notifications, metrics
 
-    same_payouts_count = get_same_payouts_count(payout['operation_id'], payout['user_id'])
+    # same_payouts_count = get_same_payouts_count(payout['operation_id'], payout['user_id'])
 
     notifications['admins'].append(f'Пробую забрать платеж ({time.time()})')
     form_data = {
@@ -408,8 +425,8 @@ def claim_payout(payout) -> bool:
             f'Сумма - 💰{payout['amount']}💰\n'
             f'Карта - 💸{payout['card']}💸'
         )
-        if same_payouts_count > 0:
-            success_msg += f'\n\n‼️Кажется, этот платеж уже забирался‼️'
+        # if same_payouts_count > 0:
+        #     success_msg += f'\n\n‼️Кажется, этот платеж уже забирался‼️'
 
         notifications['admins'].append(success_msg)
         notifications['only_taken'].append(success_msg)
@@ -492,7 +509,7 @@ while True:
             run_extra_actions()
     else:
         run_extra_actions()
-        time.sleep(0.5)
+        time.sleep(5)
         continue
 
     calimed_payouts_count = 0
