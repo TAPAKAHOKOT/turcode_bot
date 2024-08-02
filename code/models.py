@@ -39,7 +39,10 @@ class Payout(Base):
 
     @classmethod
     def get_count_by_operation_id(cls, session, operation_id: str) -> int:
-        return session.query(func.count(cls.id)).filter(cls.operation_id == operation_id).scalar()
+        return session.query(func.count(cls.id)).filter(and_(
+            cls.operation_id == operation_id,
+            cls.action == PayoutActionEnum.SUCCESS.value,
+        )).scalar()
 
     @classmethod
     def get_count_by_date_and_action(cls, session, date_str, action) -> int:
