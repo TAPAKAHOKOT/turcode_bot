@@ -43,7 +43,7 @@ def run_extra_actions():
     # Сохраняем метрики
     for metric in settings.metrics:
         write_stat(**metric)
-    settings.clear_notifications()
+    settings.clear_metrics()
 
 
 # Приступаем к запуску
