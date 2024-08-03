@@ -7,6 +7,8 @@ from models import Payout, PayoutActionEnum
 from logger import Logger
 from settings import Settings
 from tg import Tg
+import re
+
 
 
 class API:
@@ -168,15 +170,19 @@ class API:
             claim_btn = row[3]
             payout_id = claim_btn.split('data-id=')[1].split("'")[1]
 
+            card = row[8]
+            card_match = re.search(r'\d+', card)
+            if card_match:
+                card = card_match.group(0)
+
             payout = {
                 'time': row[0],
                 'status': row[1],
                 'id': payout_id,
-                'amount': row[4],
-                'card': row[7],
-                'requests': row[8],
-                'operation_id': row[14],
-                'user_id': row[15],
+                'amount': row[5],
+                'card': card,
+                'operation_id': row[15],
+                'user_id': row[16],
             }
 
             self.logger.info(f'Найден платеж: {payout}')
