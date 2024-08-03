@@ -114,10 +114,15 @@ class API:
 
         with Session(self.settings.engine) as session, session.begin():
             operation_payouts_count = Payout.get_count_by_operation_id(session, payout['operation_id'])
+            try:
+                amount = int(float(str(payout.get('amount', 0)).replace(',', '')))
+            except:
+                amount = 0
+
             payout_row = Payout(
                 operation_id=payout.get('operation_id', ''),
                 user_id=payout.get('user_id', ''),
-                amount=int(float(str(payout.get('amount', 0)).replace(',', ''))),
+                amount=amount,
             )
             if request_data['status']:
                 payout_row.action = PayoutActionEnum.SUCCESS.code
