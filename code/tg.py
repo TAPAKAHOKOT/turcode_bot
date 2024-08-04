@@ -118,13 +118,13 @@ class Tg:
                     )
                 elif text.startswith('/webstats'):
                     if self.api:
-                        msg = ''
+                        stats_msg = ''
                         for stat in self.api.get_stats():
-                            msg += (f'Акк: {stat['username']}\n'
-                                    f'Баланс: {self.format_number(stat['balance'])}\n'
-                                    f'Сумма платежей за 24 часа: {self.format_number(stat['payouts_sum_for_24h'])}\n'
-                                    f'Кол-во платежей за 24 часа: {stat['payouts_count_for_24h']}\n\n\n')
-                        self.send_msg(chat_id, msg)
+                            stats_msg += (f'Акк: {stat['username']}\n'
+                                          f'Баланс: {self.format_number(stat['balance'])}\n'
+                                          f'Сумма платежей за 24 часа: {self.format_number(stat['payouts_sum_for_24h'])}\n'
+                                          f'Кол-во платежей за 24 часа: {stat['payouts_count_for_24h']}\n\n\n')
+                        self.send_msg(chat_id, stats_msg)
                     else:
                         self.send_msg(chat_id, 'Апи не подключено')
                 elif text.startswith('/stats'):
