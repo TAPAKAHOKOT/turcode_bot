@@ -207,11 +207,6 @@ class API:
                 headers=self.headers,
                 data=form_data,
             )
-            self.settings.notifications['admins'].append(
-                f'Ответ системы ({time.time()})\n\n'
-                f'status - {request.status_code}\n'
-                f'text - {request.text}'
-            )
         except r.exceptions.RequestException as e:
             self.logger.error('Ошибка запроса:', e)
             return []
