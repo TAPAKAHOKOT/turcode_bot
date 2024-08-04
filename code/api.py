@@ -1,3 +1,4 @@
+import os
 import re
 import time
 
@@ -196,35 +197,20 @@ class API:
         return payouts
 
     def get_stats(self) -> list:
-        try:
-            form_data = {
-                'draw': 100,
-                'start': 0,
-                'length': 100,
-            }
-            request = self.session.post(
-                f'{self.base_url}/datatables/tstats.php',
-                headers=self.headers,
-                data=form_data,
-            )
-        except r.exceptions.RequestException as e:
-            self.logger.error('Ошибка запроса:', e)
+        webapp_list = os.getenv('WEBAPP_LIST', default=None)
+        if webapp_list is None:
             return []
 
-        self.logger.info(request.status_code, request.text)
-
-        try:
-            request_data = request.json()
-        except r.exceptions.JSONDecodeError as e:
-            self.logger.error(f'Ошибка запроса  {request.status_code} {request.text}:', e)
-            return []
+        webapp_list = list(map(lambda l: l.split('::'), webapp_list.split(';')))
 
         result = []
-        for row in request_data.get('data', []):
-            result.append({
-                'username': re.sub(r'<.*?>', '', row[1]),
-                'balance': self.str_to_int(row[2]),
-                'payouts_sum_for_24h': self.str_to_int(row[6]),
-                'payouts_count_for_24h': row[7],
-            })
+        for ip, password in webapp_list:
+            try:
+                host_data = r.get(f'{ip}/webstats', headers={'Authorization': f'Bearer {password}'}).json()
+            except r.exceptions.RequestException as e:
+                self.logger.error(f'Ошибка при опросе {ip} method webstats: {e}')
+                host_data = None
+
+            result.append(host_data)
+
         return result
