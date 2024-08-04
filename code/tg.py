@@ -29,6 +29,8 @@ in_work_phrases = ["Явись-я работаю-вызвали!", "Всё ещ�
 
 
 class Tg:
+    api: None
+
     def __init__(self, session, settings):
         self.session = session
         self.settings = settings
@@ -93,6 +95,7 @@ class Tg:
                         '/run - включить штуку\n'
                         '/stop - остановить штуку\n'
                         '/status - статусы, настройки, тут всякое\n'
+                        '/webstats - получить статистику с turcode\n'
                         '/stats - получить статистику\n'
                         '/set_min_amount <number> - установить минимальную сумму резервирования платежа, <number> - любое целое число, можно использовать пробел как разделитель\n'
                         '/set_max_amount <number> - установить максимальную сумму резервирования платежа, <number> - любое целое число, можно использовать пробел как разделитель\n'
@@ -113,6 +116,17 @@ class Tg:
                         f'Макс. сумма резервирования: {self.format_number(self.settings.get('max_amount', 0))}\n'
                         f'Лимит кол-ва платежей: {self.format_number(self.settings['payouts_limit'])}'
                     )
+                elif text.startswith('/webstats'):
+                    if self.api:
+                        msg = ''
+                        for stat in self.api.get_stats():
+                            msg += (f'Акк: {stat['username']}\n'
+                                    f'Баланс: {self.format_number(stat['balance'])}\n'
+                                    f'Сумма платежей за 24 часа: {self.format_number(stat['payouts_sum_for_24h'])}\n'
+                                    f'Кол-во платежей за 24 часа: {stat['payouts_count_for_24h']}\n\n\n')
+                        self.send_msg(chat_id, msg)
+                    else:
+                        self.send_msg(chat_id, 'Апи не подключено')
                 elif text.startswith('/stats'):
                     send_stats = True
                     stats_date = text.replace('/stats', '').strip()

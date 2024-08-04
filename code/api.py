@@ -1,14 +1,13 @@
+import re
 import time
 
 import requests as r
 from sqlalchemy.orm import Session
 
-from models import Payout, PayoutActionEnum
 from logger import Logger
+from models import Payout, PayoutActionEnum
 from settings import Settings
 from tg import Tg
-import re
-
 
 
 class API:
@@ -28,6 +27,7 @@ class API:
         self.session = session
         self.settings = settings
         self.tg = tg
+        self.tg.api = self
         self.logger = logger
 
     # Словарь переводим в читаемую строку
@@ -36,6 +36,13 @@ class API:
         for key, value in dict_item.items():
             res += f'{key} - {value}\n'
         return res
+
+    def str_to_int(self, num: str) -> int:
+        try:
+            num = int(float(str(num).replace(',', '')))
+        except:
+            num = 0
+        return num
 
     def get_payouts(self):
         form_data = {
@@ -116,15 +123,11 @@ class API:
 
         with Session(self.settings.engine) as session, session.begin():
             operation_payouts_count = Payout.get_count_by_operation_id(session, payout['operation_id'])
-            try:
-                amount = int(float(str(payout.get('amount', 0)).replace(',', '')))
-            except:
-                amount = 0
 
             payout_row = Payout(
                 operation_id=payout.get('operation_id', ''),
                 user_id=payout.get('user_id', ''),
-                amount=amount,
+                amount=self.str_to_int(payout.get('amount', 0)),
             )
             if request_data['status']:
                 payout_row.action = PayoutActionEnum.SUCCESS.code
@@ -191,3 +194,42 @@ class API:
             payouts.append(payout)
 
         return payouts
+
+    def get_stats(self) -> list:
+        try:
+            form_data = {
+                'draw': 100,
+                'start': 0,
+                'length': 100,
+            }
+            request = self.session.post(
+                f'{self.base_url}/datatables/tstats.php',
+                headers=self.headers,
+                data=form_data,
+            )
+            self.settings.notifications['admins'].append(
+                f'Ответ системы ({time.time()})\n\n'
+                f'status - {request.status_code}\n'
+                f'text - {request.text}'
+            )
+        except r.exceptions.RequestException as e:
+            self.logger.error('Ошибка запроса:', e)
+            return []
+
+        self.logger.info(request.status_code, request.text)
+
+        try:
+            request_data = request.json()
+        except r.exceptions.JSONDecodeError as e:
+            self.logger.error(f'Ошибка запроса  {request.status_code} {request.text}:', e)
+            return []
+
+        result = []
+        for row in request_data.get('data', []):
+            result.append({
+                'username': re.sub(r'<.*?>', '', row[1]),
+                'balance': self.str_to_int(row[2]),
+                'payouts_sum_for_24h': self.str_to_int(row[6]),
+                'payouts_count_for_24h': row[7],
+            })
+        return result
