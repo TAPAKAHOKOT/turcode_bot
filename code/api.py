@@ -18,6 +18,7 @@ class API:
     logger: Logger
 
     auth_error_count = 0
+    claimed_payouts_count = None
 
     base_url = 'https://api.turcode.app'
     headers = {
@@ -90,8 +91,9 @@ class API:
 
     # Забираем платеж
     def claim_payout(self, payout) -> bool:
-
-        # same_payouts_count = get_same_payouts_count(payout['operation_id'], payout['user_id'])
+        payouts_count_limit = self.settings.get('payouts_limit', 10)
+        if self.claimed_payouts_count >= payouts_count_limit:
+            return False
 
         self.settings.notifications['admins'].append(f'Пробую забрать платеж ({time.time()})')
         form_data = {
@@ -159,6 +161,7 @@ class API:
                 session.add(payout_row)
                 session.flush()
 
+                self.claimed_payouts_count += 1
                 return True
             else:
                 payout_row.action = PayoutActionEnum.FAIL.code
@@ -169,18 +172,22 @@ class API:
 
     # Получаем обработанные платежи
     def load_payouts(self):
-        claimed_count = 0
-        all_payouts = self.get_payouts()
-        for row in all_payouts:
-            claimed_count += 0 if not row[2] else 1
+        payouts_count_limit = self.settings.get('payouts_limit', 10)
+        if self.claimed_payouts_count is None or self.claimed_payouts_count >= payouts_count_limit:
+            self.claimed_payouts_count = 0
+            all_payouts = self.get_payouts()
+            for row in all_payouts:
+                self.claimed_payouts_count += 0 if not row[2] else 1
 
-        if claimed_count >= self.settings.get('payouts_limit', 10):
+        if self.claimed_payouts_count >= payouts_count_limit:
             return []
 
         payouts = []
+        self.claimed_payouts_count = 0
         for row in self.get_payouts():
             is_able = not row[2]
             if not is_able:
+                self.claimed_payouts_count += 1
                 continue
 
             claim_btn = row[3]
