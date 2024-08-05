@@ -95,6 +95,15 @@ class API:
         if self.claimed_payouts_count >= payouts_count_limit:
             return False
 
+        # Чекаем забирался ли платеж другим ботом
+        with Session(self.settings.engine) as session, session.begin():
+            all_bots_operation_payouts_count = Payout.get_count_by_operation_id(
+                session=session,
+                operation_id=payout['operation_id'],
+            )
+            if all_bots_operation_payouts_count > 0:
+                return False
+
         self.settings.notifications['admins'].append(f'Пробую забрать платеж ({time.time()})')
         form_data = {
             'id': payout['id'],
@@ -125,19 +134,6 @@ class API:
             return False
 
         with Session(self.settings.engine) as session, session.begin():
-            all_bots_operation_payouts_count = Payout.get_count_by_operation_id(
-                session=session,
-                operation_id=payout['operation_id'],
-            )
-            if all_bots_operation_payouts_count > 0:
-                return False
-
-            cur_bot_operation_payouts_count = Payout.get_count_by_operation_id_and_bot_name(
-                session=session,
-                bot_name=self.settings.bot_name,
-                operation_id=payout['operation_id'],
-            )
-
             payout_row = Payout(
                 operation_id=payout.get('operation_id', ''),
                 user_id=payout.get('user_id', ''),
@@ -151,6 +147,12 @@ class API:
                     f'Карта - 💸{payout['card']}💸'
                 )
 
+                # Чекаем забирал ли текущий бот этот платеж
+                cur_bot_operation_payouts_count = Payout.get_count_by_operation_id_and_bot_name(
+                    session=session,
+                    bot_name=self.settings.bot_name,
+                    operation_id=payout['operation_id'],
+                )
                 if cur_bot_operation_payouts_count > 0:
                     success_msg += '\n\n‼️Кажется, этот платеж уже забирался‼️'
 
