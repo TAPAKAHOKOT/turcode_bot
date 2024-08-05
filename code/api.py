@@ -25,12 +25,19 @@ class API:
         'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
     }
 
+    turcode_login: str
+    turcode_password: str
+    is_auth: bool = False
+
     def __init__(self, session: r.Session, settings: Settings, tg: Tg, logger: Logger):
         self.session = session
         self.settings = settings
         self.tg = tg
         self.tg.api = self
         self.logger = logger
+
+        self.turcode_login = os.getenv('TURCODE_LOGIN', None)
+        self.turcode_password = os.getenv('TURCODE_PASSWORD', None)
 
         logger.info(f'<{settings.bot_name}> API initialized')
 
@@ -48,7 +55,42 @@ class API:
             num = 0
         return num
 
+    def auth(self):
+        # Предотвращаем бесконечную авторизацию
+        if self.turcode_login is None or self.turcode_password is None:
+            return
+
+        form_data = {
+            'login': self.turcode_login,
+            'password': self.turcode_password,
+            'authenticator': '',
+        }
+        try:
+            request = self.session.post(
+                f'{self.base_url}/authUser.php',
+                data=form_data,
+                headers=self.headers,
+            )
+            auth_cookie = request.headers.get('Set-Cookie')
+            if auth_cookie is not None:
+                auth_cookie = auth_cookie.replace('auth=', '').strip().replace('auth=', '')
+                self.settings['auth_cookie'] = auth_cookie
+        except r.exceptions.RequestException as e:
+            self.logger.error('Ошибка запроса:', e)
+            return
+
+        self.is_auth = True
+
     def get_payouts(self):
+        if not self.is_auth:
+            self.auth()
+
+        if not self.is_auth:
+            self.settings['is_running'] = False
+            self.tg.notify_admins('Меня выкинуло из системы, нужна авторизация\nВыключаю штуку')
+            self.tg.notify_watchers('Меня выкинуло из системы, нужна авторизация\nВыключаю штуку')
+            return []
+
         form_data = {
             'length': 100,
             'pfrom': self.settings.get('min_amount', None),
@@ -65,8 +107,7 @@ class API:
             )
             auth_cookie = request.headers.get('Set-Cookie')
             if auth_cookie is not None:
-                auth_cookie = auth_cookie.replace('auth=', '').strip().replace(
-                    'auth=', '')
+                auth_cookie = auth_cookie.replace('auth=', '').strip().replace('auth=', '')
                 self.settings['auth_cookie'] = auth_cookie
         except r.exceptions.RequestException as e:
             self.logger.error('Ошибка запроса:', e)
@@ -74,23 +115,26 @@ class API:
 
         try:
             request_data = request.json()
-        except r.exceptions.JSONDecodeError as e:
-            # logger.error(f'Ошибка запроса {request.status_code} {request.text}:', e)
+            self.auth_error_count = 0
+        except r.exceptions.JSONDecodeError:
+            self.is_auth = False
 
             self.auth_error_count += 1
-            if self.auth_error_count >= 10:
-                self.settings['is_running'] = False
+            if self.auth_error_count >= 3:
                 self.auth_error_count = 0
-                self.tg.notify_admins('Меня выкинуло из системы, нужна авторизация\nВыключаю штуку')
-                self.tg.notify_watchers('Меня выкинуло из системы, нужна авторизация\nВыключаю штуку')
+                return []
+            else:
+                return self.get_payouts()
 
-            return []
-
+        self.is_auth = True
         self.auth_error_count = 0
         return request_data['data']
 
     # Забираем платеж
     def claim_payout(self, payout) -> bool:
+        if not self.is_auth:
+            self.auth()
+
         payouts_count_limit = self.settings.get('payouts_limit', 10)
         if self.claimed_payouts_count >= payouts_count_limit:
             return False
