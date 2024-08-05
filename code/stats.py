@@ -23,9 +23,10 @@ def get_stats(settings, stat_date=None):
                 action=PayoutActionEnum.SUCCESS.code,
             )
             success_payouts_amount_sum = Payout.get_amount_sum_by_date_and_action(
-                session,
-                date,
-                PayoutActionEnum.SUCCESS.code,
+                session=session,
+                bot_name=settings.bot_name,
+                date_str=date,
+                action=PayoutActionEnum.SUCCESS.code,
             )
             fail_payouts_count = Payout.get_count_by_date_and_action(
                 session=session,
@@ -34,9 +35,10 @@ def get_stats(settings, stat_date=None):
                 action=PayoutActionEnum.FAIL.code,
             )
             fail_payouts_amount_sum = Payout.get_amount_sum_by_date_and_action(
-                session,
-                date,
-                PayoutActionEnum.FAIL.code,
+                session=session,
+                bot_name=settings.bot_name,
+                date_str=date,
+                action=PayoutActionEnum.FAIL.code,
             )
 
             if success_payouts_count or fail_payouts_count:

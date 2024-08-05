@@ -71,8 +71,6 @@ class API:
             self.logger.error('Ошибка запроса:', e)
             return []
 
-        self.logger.info(request.status_code, request.text)
-
         try:
             request_data = request.json()
         except r.exceptions.JSONDecodeError as e:
@@ -145,10 +143,6 @@ class API:
                 bot_name=self.settings.bot_name,
             )
             if request_data['status']:
-                payout_row.action = PayoutActionEnum.SUCCESS.code
-                session.add(payout_row)
-                session.flush()
-
                 success_msg = (
                     f'Платеж забран\n'
                     f'Сумма - 💰{payout['amount']}💰\n'
@@ -160,6 +154,10 @@ class API:
 
                 self.settings.notifications['admins'].append(success_msg)
                 self.settings.notifications['only_taken'].append(success_msg)
+
+                payout_row.action = PayoutActionEnum.SUCCESS.code
+                session.add(payout_row)
+                session.flush()
 
                 return True
             else:
@@ -204,8 +202,7 @@ class API:
             }
 
             self.logger.info(f'Найден платеж: {payout}')
-            self.settings.notifications['admins'].append(
-                f'Найден платеж ({time.time()})\n\n{self.dict_to_str(payout)}')
+            self.settings.notifications['admins'].append(f'Найден платеж ({time.time()})\n\n{self.dict_to_str(payout)}')
             payouts.append(payout)
 
         return payouts

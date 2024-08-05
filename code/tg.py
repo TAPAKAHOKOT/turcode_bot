@@ -46,6 +46,9 @@ class Tg:
         url = f"https://api.telegram.org/bot{bot_token}/sendMessage?chat_id={chat_id}&text={text}&reply_markup=%7B%22remove_keyboard%22%3A%20true%7D"
         response = r.get(url)
 
+        if response.status_code != 200:
+            print(response.text)
+
     def notify_admins(self, *args):
         text = ' '.join([str(s) for s in args])
         for admin in admins:

@@ -54,7 +54,6 @@ class Settings:
         try:
             with open(self.file_path, 'w', encoding='utf-8') as file:
                 json.dump(self.settings, file, ensure_ascii=False, indent=4)
-            self.logger.info("Настройки успешно сохранены.")
         except Exception as e:
             self.logger.error(f"Ошибка при сохранении настроек: {e}")
 

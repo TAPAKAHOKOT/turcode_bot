@@ -61,14 +61,15 @@ class Payout(Base):
         ).count()
 
     @classmethod
-    def get_amount_sum_by_date_and_action(cls, session, date_str, action) -> int:
+    def get_amount_sum_by_date_and_action(cls, session, bot_name: str, date_str, action) -> int:
         start_date = datetime.strptime(date_str, "%d.%m.%Y")
         end_date = start_date.replace(hour=23, minute=59, second=59)
 
-        return session.query(Payout).filter(
+        return session.query(func.sum(cls.amount)).filter(
             and_(
+                cls.bot_name == bot_name,
                 cls.created_at >= start_date,
                 cls.created_at <= end_date,
                 cls.action == action
             )
-        ).count()
+        ).scalar()
