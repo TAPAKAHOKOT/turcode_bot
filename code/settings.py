@@ -7,6 +7,7 @@ from logger import Logger
 
 
 class Settings:
+    bot_name: str
     default_settings: dict = {
         "min_amount": 50_000,
         "max_amount": 80_000,
@@ -19,7 +20,8 @@ class Settings:
     notifications: dict = None
     file_path: str = 'settings.json'
 
-    def __init__(self, engine: Engine, logger: Logger):
+    def __init__(self, bot_name: str, engine: Engine, logger: Logger):
+        self.bot_name = bot_name
         self.engine = engine
         self.logger = logger
         self.clear_notifications()

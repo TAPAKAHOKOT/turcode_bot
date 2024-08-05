@@ -31,6 +31,8 @@ class API:
         self.tg.api = self
         self.logger = logger
 
+        logger.info(f'<{settings.bot_name}> API initialized')
+
     # Словарь переводим в читаемую строку
     def dict_to_str(self, dict_item):
         res = ''
@@ -123,12 +125,24 @@ class API:
             return False
 
         with Session(self.settings.engine) as session, session.begin():
-            operation_payouts_count = Payout.get_count_by_operation_id(session, payout['operation_id'])
+            all_bots_operation_payouts_count = Payout.get_count_by_operation_id(
+                session=session,
+                operation_id=payout['operation_id'],
+            )
+            if all_bots_operation_payouts_count > 0:
+                return False
+
+            cur_bot_operation_payouts_count = Payout.get_count_by_operation_id_and_bot_name(
+                session=session,
+                bot_name=self.settings.bot_name,
+                operation_id=payout['operation_id'],
+            )
 
             payout_row = Payout(
                 operation_id=payout.get('operation_id', ''),
                 user_id=payout.get('user_id', ''),
                 amount=self.str_to_int(payout.get('amount', 0)),
+                bot_name=self.settings.bot_name,
             )
             if request_data['status']:
                 payout_row.action = PayoutActionEnum.SUCCESS.code
@@ -141,7 +155,7 @@ class API:
                     f'Карта - 💸{payout['card']}💸'
                 )
 
-                if operation_payouts_count > 0:
+                if cur_bot_operation_payouts_count > 0:
                     success_msg += '\n\n‼️Кажется, этот платеж уже забирался‼️'
 
                 self.settings.notifications['admins'].append(success_msg)

@@ -13,7 +13,16 @@ from settings import Settings
 from tg import Tg
 
 dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-engine = create_engine(f'sqlite:////{dir_path}/payouts.db')
+engine = create_engine(
+    '{DB}://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'.format(
+        DB=os.getenv("DB"),
+        DB_USER=os.getenv("DB_USER"),
+        DB_PASS=os.getenv("DB_PASS"),
+        DB_HOST=os.getenv("DB_HOST"),
+        DB_PORT=os.getenv("DB_PORT"),
+        DB_NAME=os.getenv("DB_NAME")
+    )
+)
 Base.metadata.create_all(engine)
 
 sys.stdout.reconfigure(encoding='utf-8')
@@ -31,7 +40,7 @@ signal.signal(signal.SIGINT, onexit)
 signal.signal(signal.SIGTERM, onexit)
 
 # Загрузка настроек
-settings = Settings(engine, logger)
+settings = Settings(os.getenv('BOT_NAME', 'unknown'), engine, logger)
 settings.load()
 
 logger.info('Настройки:', settings)
