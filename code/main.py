@@ -72,7 +72,7 @@ while True:
             run_extra_actions()
     else:
         run_extra_actions()
-        time.sleep(5)
+        time.sleep(1)
         continue
 
     claimed_payouts_count = 0
