@@ -261,6 +261,7 @@ class API:
             for bank_name in [
                 'Тинькофф',
                 'Tinkoff',
+                'T-Bank',
                 'Сбербанк',
                 'Sberbank',
                 'Райффайзен',
@@ -270,10 +271,7 @@ class API:
                     bank_is_correct = True
                     break
 
-            if not bank_is_correct:
-                continue
-
-            if not (len(payout['card']) == 11 or len(payout['phone']) == 11):
+            if not bank_is_correct and not (len(payout['card']) == 11 or len(payout['phone']) == 11):
                 continue
 
             self.logger.info(f'Найден платеж: {payout}')
