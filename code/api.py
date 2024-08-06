@@ -249,10 +249,32 @@ class API:
                 'status': row[1],
                 'id': payout_id,
                 'amount': row[5],
+                'bank': row[7],
                 'card': card,
+                'phone': row[14],
                 'operation_id': row[15],
                 'user_id': row[16],
             }
+
+            bank_is_correct = False
+            lower_payout_bank = payout['bank'].lower()
+            for bank_name in [
+                'Тинькофф',
+                'Tinkoff',
+                'Сбербанк',
+                'Sberbank',
+                'Райффайзен',
+                'Raiffeisen',
+            ]:
+                if bank_name.lower() in lower_payout_bank:
+                    bank_is_correct = True
+                    break
+
+            if not bank_is_correct:
+                continue
+
+            if not (len(payout['card']) == 11 or len(payout['phone']) == 11):
+                continue
 
             self.logger.info(f'Найден платеж: {payout}')
             self.settings.notifications['admins'].append(f'Найден платеж ({time.time()})\n\n{self.dict_to_str(payout)}')
