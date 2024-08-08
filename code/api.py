@@ -276,11 +276,11 @@ class API:
                 end_time = row[4].split('data-end-time=')[1].split("'")[1]
                 try:
                     end_time = int(end_time) // 1000
-                    end_time -= 3 * 60 * 60
+                    end_time -= 7 * 60 * 60
                 except ValueError:
                     continue
 
-                now_time = datetime.datetime.now().timestamp()
+                now_time = datetime.datetime.utcnow().timestamp()
                 time_diff = now_time - end_time
                 if 9 * 60 < time_diff < 10 * 60:
                     _time_ending_notified_payouts.append(payout_id)

@@ -214,7 +214,7 @@ class Tg:
                         )
                 elif text.startswith('/auth'):
                     auth_cookie = text.replace('/auth', '').strip().replace(
-                        'auth=', '').encode('latin-1')
+                        'auth=', '').encode('latin-1', 'ignore').decode('utf-8', 'ignore')
                     self.settings['auth_cookie'] = auth_cookie
                     self.session.cookies.set('auth', self.settings['auth_cookie'])
 
