@@ -9,6 +9,7 @@ from code.logger import Logger
 from code.models import Payout, PayoutActionEnum
 from code.settings import Settings
 from code.tg import Tg
+import datetime
 
 
 class API:
@@ -40,6 +41,8 @@ class API:
         self.turcode_password = os.getenv('TURCODE_PASSWORD', None)
 
         logger.info(f'<{settings.bot_name}> API initialized')
+
+        self.time_ending_notified_payouts = []
 
     # Словарь переводим в читаемую строку
     def dict_to_str(self, dict_item):
@@ -258,17 +261,34 @@ class API:
         if self.claimed_payouts_count >= payouts_count_limit:
             return []
 
+        _time_ending_notified_payouts = []
         payouts = []
         self.claimed_payouts_count = 0
         for row in self.get_payouts():
-            is_able = not row[2]
-            if not is_able:
-                self.claimed_payouts_count += 1
-                continue
-
             claim_btn = row[3]
             payout_id = claim_btn.split('data-id=')[1].split("'")[1]
 
+            is_able = not row[2]
+            if not is_able:
+                self.claimed_payouts_count += 1
+                end_time = row[4].split('data-end-time=')[1].split("'")[1]
+                try:
+                    end_time = int(end_time) // 1000
+                    end_time -= 3 * 60 * 60
+                except ValueError:
+                    continue
+
+                now_time = datetime.datetime.now().timestamp()
+                time_diff = now_time - end_time
+                if 9 * 60 < time_diff < 10 * 60:
+                    _time_ending_notified_payouts.append(payout_id)
+                    if payout_id not in self.time_ending_notified_payouts:
+                        self.settings.notifications['admins'].append(
+                            f'❗️У платежа заканчивается время для оплаты\n'
+                            f'Осталось {time_diff // 60} минут'
+                        )
+
+                continue
             card = row[8]
             card_match = re.search(r'\d+', card)
             if card_match:
@@ -301,6 +321,7 @@ class API:
                     bank_is_correct = True
                     break
 
+            self.time_ending_notified_payouts = _time_ending_notified_payouts
             if not bank_is_correct and not (len(payout['card']) == 11 or len(payout['phone']) == 11):
                 continue
 

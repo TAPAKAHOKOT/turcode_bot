@@ -145,8 +145,7 @@ class Tg:
                     stats_date = text.replace('/stats', '').strip()
                     if stats_date:
                         try:
-                            stats_date = datetime.strptime(stats_date,
-                                                           '%d.%m.%Y').date()
+                            stats_date = datetime.strptime(stats_date, '%d.%m.%Y').date()
                         except ValueError:
                             send_stats = False
                             self.send_msg(chat_id, 'Неверный формат даты')
