@@ -5,10 +5,10 @@ import time
 import requests as r
 from sqlalchemy.orm import Session
 
-from logger import Logger
-from models import Payout, PayoutActionEnum
-from settings import Settings
-from tg import Tg
+from code.logger import Logger
+from code.models import Payout, PayoutActionEnum
+from code.settings import Settings
+from code.tg import Tg
 
 
 class API:
@@ -76,7 +76,7 @@ class API:
                 auth_cookie = auth_cookie.replace('auth=', '').strip().replace('auth=', '')
                 self.settings['auth_cookie'] = auth_cookie
         except r.exceptions.RequestException as e:
-            self.logger.error('Ошибка запроса:', e)
+            self.logger.error('Request error:', e)
             return
 
         self.is_auth = True
@@ -110,7 +110,7 @@ class API:
                 auth_cookie = auth_cookie.replace('auth=', '').strip().replace('auth=', '')
                 self.settings['auth_cookie'] = auth_cookie
         except r.exceptions.RequestException as e:
-            self.logger.error('Ошибка запроса:', e)
+            self.logger.error('Request error:', e)
             return []
 
         try:
@@ -166,7 +166,7 @@ class API:
                 f'text - {request.text}'
             )
         except r.exceptions.RequestException as e:
-            self.logger.error('Ошибка запроса:', e)
+            self.logger.error('Request error:', e)
             return False
 
         self.logger.info(request.status_code, request.text)
@@ -174,7 +174,7 @@ class API:
         try:
             request_data = request.json()
         except r.exceptions.JSONDecodeError as e:
-            self.logger.error(f'Ошибка запроса  {request.status_code} {request.text}:', e)
+            self.logger.error(f'Request error  {request.status_code} {request.text}:', e)
             return False
 
         with Session(self.settings.engine) as session, session.begin():
@@ -215,6 +215,38 @@ class API:
                 session.flush()
 
         return False
+
+    def get_webstats(self) -> list:
+        try:
+            form_data = {
+                'draw': 100,
+                'start': 0,
+                'length': 100,
+            }
+
+            request = self.session.post(
+                f'{self.base_url}/datatables/tstats.php',
+                data=form_data,
+            )
+        except r.exceptions.RequestException as e:
+            self.logger.error(e)
+            return []
+
+        try:
+            request_data = request.json()
+        except r.exceptions.JSONDecodeError as e:
+            self.logger.error(e)
+            return []
+
+        result = []
+        for row in request_data.get('data', []):
+            result.append({
+                'username': re.sub(r'<.*?>', '', row[1]),
+                'balance': self.str_to_int(row[2]),
+                'payouts_sum_for_24h': self.str_to_int(row[6]),
+                'payouts_count_for_24h': row[7],
+            })
+        return result
 
     # Получаем обработанные платежи
     def load_payouts(self):
@@ -274,7 +306,7 @@ class API:
             if not bank_is_correct and not (len(payout['card']) == 11 or len(payout['phone']) == 11):
                 continue
 
-            self.logger.info(f'Найден платеж: {payout}')
+            self.logger.info(f'Payout found: {payout}')
             self.settings.notifications['admins'].append(f'Найден платеж ({time.time()})\n\n{self.dict_to_str(payout)}')
             payouts.append(payout)
 
@@ -292,7 +324,7 @@ class API:
             try:
                 host_data = r.get(f'{ip}/webstats', headers={'Authorization': f'Bearer {password}'}).json()
             except r.exceptions.RequestException as e:
-                self.logger.error(f'Ошибка при опросе {ip} method webstats: {e}')
+                self.logger.error(f'Ping {ip} error method webstats: {e}')
                 host_data = None
 
             result.append(host_data)

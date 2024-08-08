@@ -1,12 +1,16 @@
-import json
-import os
-import re
+import os, sys
 
 import requests as r
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request, abort
 
+from code.api import API
+from code.logger import Logger
+from code.settings import Settings
+from code.tg import Tg
+
 load_dotenv()
+sys.stdout.reconfigure(encoding='utf-8')
 
 app = Flask(__name__)
 
@@ -34,54 +38,25 @@ def before_request():
         authenticate()
 
 
-def str_to_int(num: str) -> int:
-    try:
-        num = int(float(str(num).replace(',', '')))
-    except:
-        num = 0
-    return num
-
-
-def get_auth_cookie() -> str:
-    with open('settings.json', 'r', encoding='utf-8') as file:
-        return (json.load(file) or {}).get('auth_cookie', '')
-
-
 @app.route('/webstats', methods=['GET'])
 def webstats():
-    base_url = 'https://api.turcode.app'
+    logger = Logger()
+    settings = Settings(os.getenv('BOT_NAME', 'unknown'), logger)
+    settings.load()
 
-    try:
-        form_data = {
-            'draw': 100,
-            'start': 0,
-            'length': 100,
-        }
-        session = r.Session()
-        session.cookies.set('auth', get_auth_cookie())
+    session = r.Session()
+    session.cookies.set('auth', settings['auth_cookie'])
 
-        request = session.post(
-            f'{base_url}/datatables/tstats.php',
-            data=form_data,
-        )
-    except r.exceptions.RequestException as e:
-        print(e)
-        return []
+    tg = Tg(session, settings)
+    logger.tg = tg
+    api = API(session, settings, tg, logger)
 
-    try:
-        request_data = request.json()
-    except r.exceptions.JSONDecodeError as e:
-        print(e)
-        return []
+    result = api.get_webstats()
+    if not result:
+        api.auth()
+        session.cookies.set('auth', settings['auth_cookie'])
+        result = api.get_webstats()
 
-    result = []
-    for row in request_data.get('data', []):
-        result.append({
-            'username': re.sub(r'<.*?>', '', row[1]),
-            'balance': str_to_int(row[2]),
-            'payouts_sum_for_24h': str_to_int(row[6]),
-            'payouts_count_for_24h': row[7],
-        })
     return jsonify(result)
 
 

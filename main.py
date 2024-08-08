@@ -4,26 +4,12 @@ import sys
 import time
 
 import requests as r
-from sqlalchemy import create_engine
 
-from api import API
-from logger import Logger
-from models import Base
-from settings import Settings
-from tg import Tg
-
-dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-engine = create_engine(
-    '{DB}://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'.format(
-        DB=os.getenv("DB"),
-        DB_USER=os.getenv("DB_USER"),
-        DB_PASS=os.getenv("DB_PASS"),
-        DB_HOST=os.getenv("DB_HOST"),
-        DB_PORT=os.getenv("DB_PORT"),
-        DB_NAME=os.getenv("DB_NAME")
-    )
-)
-Base.metadata.create_all(engine)
+from code.api import API
+from code.logger import Logger
+from code.models import Base
+from code.settings import Settings
+from code.tg import Tg
 
 sys.stdout.reconfigure(encoding='utf-8')
 logger = Logger()
@@ -32,7 +18,7 @@ logger = Logger()
 # Настраиваем сигналы закрытия программы
 def onexit(*args, **kwargs):
     settings.save()
-    logger.info(f'Программа остановлена')
+    logger.info(f'Program stopped')
     sys.exit(0)
 
 
@@ -40,10 +26,12 @@ signal.signal(signal.SIGINT, onexit)
 signal.signal(signal.SIGTERM, onexit)
 
 # Загрузка настроек
-settings = Settings(os.getenv('BOT_NAME', 'unknown'), engine, logger)
+settings = Settings(os.getenv('BOT_NAME', 'unknown'), logger)
 settings.load()
 
-logger.info('Настройки:', settings)
+Base.metadata.create_all(settings.engine)
+
+logger.info('Settings:', settings)
 
 
 def run_extra_actions():

@@ -5,7 +5,7 @@ from random import choices
 import requests as r
 from dotenv import load_dotenv
 
-from stats import get_stats
+from code.stats import get_stats
 
 load_dotenv()
 

@@ -1,6 +1,6 @@
 import time
 
-from tg import Tg
+from code.tg import Tg
 
 
 class Logger:
@@ -8,7 +8,7 @@ class Logger:
 
     @staticmethod
     def log(log_type: str, *args):
-        print(f'{log_type} {int(time.time())}:', *args)
+        print(f'{log_type} {int(time.time())}:'.encode('utf-8'), *args)
 
     def info(self, *args):
         self.log('INFO', *args)

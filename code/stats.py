@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 
 from sqlalchemy.orm import Session
 
-from models import Payout, PayoutActionEnum
+from code.models import Payout, PayoutActionEnum
 
 
 def get_stats(settings, stat_date=None):

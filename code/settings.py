@@ -1,9 +1,10 @@
 import copy
 import json
+import os
 
-from sqlalchemy import Engine
+from sqlalchemy import create_engine
 
-from logger import Logger
+from code.logger import Logger
 
 
 class Settings:
@@ -20,11 +21,21 @@ class Settings:
     notifications: dict = None
     file_path: str = 'settings.json'
 
-    def __init__(self, bot_name: str, engine: Engine, logger: Logger):
+    def __init__(self, bot_name: str, logger: Logger):
         self.bot_name = bot_name
-        self.engine = engine
         self.logger = logger
         self.clear_notifications()
+
+        self.engine = create_engine(
+            '{DB}://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'.format(
+                DB=os.getenv("DB"),
+                DB_USER=os.getenv("DB_USER"),
+                DB_PASS=os.getenv("DB_PASS"),
+                DB_HOST=os.getenv("DB_HOST"),
+                DB_PORT=os.getenv("DB_PORT"),
+                DB_NAME=os.getenv("DB_NAME")
+            )
+        )
 
     def __setitem__(self, key, value):
         self.settings[key] = value
@@ -55,7 +66,7 @@ class Settings:
             with open(self.file_path, 'w', encoding='utf-8') as file:
                 json.dump(self.settings, file, ensure_ascii=False, indent=4)
         except Exception as e:
-            self.logger.error(f"Ошибка при сохранении настроек: {e}")
+            self.logger.error(f"Settings save error: {e}")
 
     def load(self):
         """
@@ -73,10 +84,10 @@ class Settings:
             for key, value in self.default_settings.items():
                 if key not in self.settings:
                     self.settings[key] = value
-            self.logger.info("Настройки успешно загружены.")
+            self.logger.info("Settings loaded.")
         except Exception as e:
             self.settings = copy.deepcopy(self.default_settings)
-            self.logger.error(f"Ошибка при загрузке настроек: {e}")
+            self.logger.error(f"Settings load error: {e}")
 
     def clear_notifications(self):
         self.notifications = {'admins': [], 'only_taken': []}
