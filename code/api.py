@@ -229,13 +229,11 @@ class API:
                 data=form_data,
             )
         except r.exceptions.RequestException as e:
-            self.logger.error(e)
             return []
 
         try:
             request_data = request.json()
         except r.exceptions.JSONDecodeError as e:
-            self.logger.error(e)
             return []
 
         result = []
