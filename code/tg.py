@@ -216,7 +216,6 @@ class Tg:
                     auth_cookie = text.replace('/auth', '').strip().replace(
                         'auth=', '')
                     self.settings['auth_cookie'] = auth_cookie
-
                     self.session.cookies.set('auth', self.settings['auth_cookie'])
 
                     self.send_msg(chat_id, f'Обновил куки: {auth_cookie}')

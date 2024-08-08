@@ -78,6 +78,7 @@ class API:
             if auth_cookie is not None:
                 auth_cookie = auth_cookie.replace('auth=', '').strip().replace('auth=', '')
                 self.settings['auth_cookie'] = auth_cookie
+                self.session.cookies.set('auth', self.settings['auth_cookie'])
         except r.exceptions.RequestException as e:
             self.logger.error('Request error:', e)
             return
@@ -112,6 +113,7 @@ class API:
             if auth_cookie is not None:
                 auth_cookie = auth_cookie.replace('auth=', '').strip().replace('auth=', '')
                 self.settings['auth_cookie'] = auth_cookie
+                self.session.cookies.set('auth', self.settings['auth_cookie'])
         except r.exceptions.RequestException as e:
             self.logger.error('Request error:', e)
             return []
