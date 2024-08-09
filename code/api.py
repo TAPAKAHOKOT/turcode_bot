@@ -276,18 +276,22 @@ class API:
                 end_time = row[4].split('data-end-time=')[1].split("'")[1]
                 try:
                     end_time = int(end_time) // 1000
-                    end_time -= 7 * 60 * 60
+                    end_time -= 6 * 60 * 60
                 except ValueError:
                     continue
 
                 now_time = datetime.datetime.utcnow().timestamp()
-                time_diff = now_time - end_time
+                time_diff = end_time - now_time
                 if 9 * 60 < time_diff < 10 * 60:
                     _time_ending_notified_payouts.append(payout_id)
                     if payout_id not in self.time_ending_notified_payouts:
                         self.settings.notifications['admins'].append(
                             f'❗️У платежа заканчивается время для оплаты\n'
-                            f'Осталось {time_diff // 60} минут'
+                            f'Осталось 10 минут'
+                        )
+                        self.settings.notifications['only_taken'].append(
+                            f'❗️У платежа заканчивается время для оплаты\n'
+                            f'Осталось 10 минут'
                         )
 
                 continue
@@ -323,7 +327,6 @@ class API:
                     bank_is_correct = True
                     break
 
-            self.time_ending_notified_payouts = _time_ending_notified_payouts
             if not bank_is_correct and not (len(payout['card']) == 11 or len(payout['phone']) == 11):
                 continue
 
@@ -331,6 +334,7 @@ class API:
             self.settings.notifications['admins'].append(f'Найден платеж ({time.time()})\n\n{self.dict_to_str(payout)}')
             payouts.append(payout)
 
+        self.time_ending_notified_payouts = _time_ending_notified_payouts
         return payouts
 
     def get_stats(self) -> list:
