@@ -292,7 +292,7 @@ class API:
                         if payout_id not in self.time_ending_notified_payouts:
                             remind_msg_text = (f'❗️У платежа заканчивается время для оплаты\n'
                                                f'{_msg_text}\n'
-                                               f'Payout ID: {payout_id} Сумма: {row[5]}')
+                                               f'Operation ID: {row[15]} Сумма: {row[5]}')
                             self.settings.notifications['admins'].append(remind_msg_text)
                             self.settings.notifications['only_taken'].append(remind_msg_text)
 

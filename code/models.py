@@ -73,3 +73,7 @@ class Payout(Base):
                 cls.action == action
             )
         ).scalar()
+
+    @classmethod
+    def get_all_by_operation_id(cls, session, operation_id: str) -> list:
+        return session.query(Payout).filter(cls.operation_id == operation_id).order_by(Payout.created_at.desc()).all()

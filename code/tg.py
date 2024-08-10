@@ -4,7 +4,9 @@ from random import choices
 
 import requests as r
 from dotenv import load_dotenv
+from sqlalchemy.orm import Session
 
+from code.models import Payout, PayoutActionEnum
 from code.stats import get_stats
 
 load_dotenv()
@@ -94,16 +96,20 @@ class Tg:
                     self.send_msg(
                         chat_id,
                         'Хелпанем немножечко :))\n\n'
-                        '/help - список команд\n'
-                        '/run - включить штуку\n'
-                        '/stop - остановить штуку\n'
-                        '/status - статусы, настройки, тут всякое\n'
-                        '/webstats - получить статистику с turcode\n'
-                        '/stats - получить статистику\n'
-                        '/set_min_amount <number> - установить минимальную сумму резервирования платежа, <number> - любое целое число, можно использовать пробел как разделитель\n'
-                        '/set_max_amount <number> - установить максимальную сумму резервирования платежа, <number> - любое целое число, можно использовать пробел как разделитель\n'
-                        '/set_payouts_limit <number> - установить лимит кол-ва платежей, <number> - любое целое число, можно использовать пробел как разделитель\n'
-                        '/auth <text> - установить куки авторизации'
+                        '/help - список команд\n\n'
+                        + f'{'Штука':=^20}' + '\n'
+                                              '/run - включить штуку\n'
+                                              '/stop - остановить штуку\n'
+                                              '/status - статусы, настройки, тут всякое\n\n'
+                        + f'{'Статистика':=^20}' + '\n'
+                                                   '/webstats - получить статистику с turcode\n'
+                                                   '/stats - получить статистику\n'
+                                                   '/payout <operation_id> - найти платеж среди всех платежей забранных всеми ботами\n\n'
+                        + f'{'Настройки':=^20}' + '\n'
+                                                  '/set_min_amount <number> - установить минимальную сумму резервирования платежа, <number> - любое целое число, можно использовать пробел как разделитель\n'
+                                                  '/set_max_amount <number> - установить максимальную сумму резервирования платежа, <number> - любое целое число, можно использовать пробел как разделитель\n'
+                                                  '/set_payouts_limit <number> - установить лимит кол-ва платежей, <number> - любое целое число, можно использовать пробел как разделитель\n'
+                                                  '/auth <text> - установить куки авторизации'
                     )
                 elif text.startswith('/run'):
                     self.settings['is_running'] = True
@@ -170,6 +176,36 @@ class Tg:
                             )
                         if not stats_dict:
                             self.send_msg(chat_id, 'Статистики нет')
+                elif text.startswith('/payout'):
+                    operation_id = text.replace('/payout', '').strip()
+                    if operation_id:
+                        with Session(self.settings.engine) as session, session.begin():
+                            payouts = Payout.get_all_by_operation_id(session, operation_id=operation_id)
+
+                            if payouts:
+                                for payout in payouts:
+                                    action = (PayoutActionEnum.SUCCESS.text
+                                              if payout.action == PayoutActionEnum.SUCCESS.code else
+                                              PayoutActionEnum.FAIL.text)
+
+                                    self.send_msg(
+                                        chat_id,
+                                        f'Событие: {action}\n'
+                                        f'Дата события: {payout.created_at.strftime("%d.%m.%Y %H:%M:%S")}\n'
+                                        f'Бот: {payout.bot_name}\n'
+                                        f'Operation id: {payout.operation_id}\n'
+                                        f'Сумма: {self.format_number(payout.amount)}\n'
+                                    )
+                            else:
+                                self.send_msg(
+                                    chat_id,
+                                    'Платеж не найден :('
+                                )
+                    else:
+                        self.send_msg(
+                            chat_id,
+                            'Неверный формат ввода, пример: /payout W153944573'
+                        )
                 elif text.startswith('/set_min_amount'):
                     new_min_amount = text.replace('/set_min_amount ', '')
                     try:
