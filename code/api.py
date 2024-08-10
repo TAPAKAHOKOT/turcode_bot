@@ -282,17 +282,19 @@ class API:
 
                 now_time = datetime.datetime.utcnow().timestamp()
                 time_diff = end_time - now_time
-                if 9 * 60 < time_diff < 10 * 60:
-                    _time_ending_notified_payouts.append(payout_id)
-                    if payout_id not in self.time_ending_notified_payouts:
-                        self.settings.notifications['admins'].append(
-                            f'❗️У платежа заканчивается время для оплаты\n'
-                            f'Осталось 10 минут'
-                        )
-                        self.settings.notifications['only_taken'].append(
-                            f'❗️У платежа заканчивается время для оплаты\n'
-                            f'Осталось 10 минут'
-                        )
+
+                for _msg_text, check_fun in [
+                    ['Осталось 15 минут', lambda _time_diff: 14 * 60 < time_diff < 15 * 60],
+                    ['Осталось 5 минут', lambda _time_diff: 4 * 60 < time_diff < 5 * 60],
+                ]:
+                    if check_fun(time_diff):
+                        _time_ending_notified_payouts.append(payout_id)
+                        if payout_id not in self.time_ending_notified_payouts:
+                            remind_msg_text = (f'❗️У платежа заканчивается время для оплаты\n'
+                                               f'{_msg_text}\n'
+                                               f'Payout ID: {payout_id} Сумма: {row[5]}')
+                            self.settings.notifications['admins'].append(remind_msg_text)
+                            self.settings.notifications['only_taken'].append(remind_msg_text)
 
                 continue
             card = row[8]
