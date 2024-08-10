@@ -114,7 +114,7 @@ class API:
                 self.settings['is_running'] = False
                 self.tg.notify_admins('Меня блокнуло\nВыключаю штуку')
                 self.tg.notify_watchers('Меня блокнуло\nВыключаю штуку')
-                return[]
+                return []
 
             auth_cookie = request.headers.get('Set-Cookie')
             if auth_cookie is not None:
