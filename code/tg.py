@@ -244,6 +244,9 @@ class Tg:
                             f'Бот: {payout.bot_name}\n'
                             f'Operation id: {payout.operation_id}\n'
                             f'Сумма: {self.format_number(payout.amount)}\n'
+                            f'Банк: {payout.bank_name}\n'
+                            f'Карта: {payout.card}\n'
+                            f'Телефон: {payout.phone}\n'
                         )
                     return
 
