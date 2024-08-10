@@ -188,6 +188,10 @@ class API:
                 user_id=payout.get('user_id', ''),
                 amount=self.str_to_int(payout.get('amount', 0)),
                 bot_name=self.settings.bot_name,
+                bank_name=payout.get('bank', None),
+                card=payout.get('card', None),
+                phone=payout.get('phone', None),
+                payout_id=payout.get('id', None),
             )
             if request_data['status']:
                 success_msg = (

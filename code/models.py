@@ -29,6 +29,10 @@ class Payout(Base):
     user_id = Column(String, nullable=False)
     amount = Column(Integer, nullable=False)
     bot_name = Column(String, nullable=False)
+    bank_name = Column(String, nullable=True)
+    card = Column(String, nullable=True)
+    phone = Column(String, nullable=True)
+    payout_id = Column(String, nullable=True)
     created_at = Column(TIMESTAMP, server_default=func.current_timestamp())
 
     @classmethod
@@ -77,3 +81,11 @@ class Payout(Base):
     @classmethod
     def get_all_by_operation_id(cls, session, operation_id: str) -> list:
         return session.query(Payout).filter(cls.operation_id == operation_id).order_by(Payout.created_at.desc()).all()
+
+    @classmethod
+    def get_all_by_card(cls, session, card: str) -> list:
+        return session.query(Payout).filter(cls.card == card).order_by(Payout.created_at.desc()).all()
+
+    @classmethod
+    def get_all_by_phone(cls, session, phone: str) -> list:
+        return session.query(Payout).filter(cls.phone == phone).order_by(Payout.created_at.desc()).all()
