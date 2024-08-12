@@ -303,7 +303,9 @@ class Tg:
     def _auth_command(self, chat_id: int | str, text: str):
         auth_cookie = text.replace('/auth', '').strip().replace(
             'auth=', '').encode('latin-1', 'ignore').decode('utf-8', 'ignore')
+        self.api.is_auth = True
         self.settings['auth_cookie'] = auth_cookie
         self.session.cookies.set('auth', self.settings['auth_cookie'])
+        self.settings.logger.info(f'{self.api.is_auth=}')
 
         self.send_msg(chat_id, f'Обновил куки: {auth_cookie}')

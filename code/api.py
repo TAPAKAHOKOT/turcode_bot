@@ -1,3 +1,4 @@
+import datetime
 import os
 import re
 import time
@@ -9,7 +10,6 @@ from code.logger import Logger
 from code.models import Payout, PayoutActionEnum
 from code.settings import Settings
 from code.tg import Tg
-import datetime
 
 
 class API:
@@ -58,10 +58,20 @@ class API:
             num = 0
         return num
 
+    def _extract_auth_cookie(self, cookies):
+        try:
+            return cookies.split('auth=')[1].split(';')[0]
+        except:
+            self.tg.notify_admins(f'Что-то не так с куками... {cookies}')
+
+            return None
+
     def auth(self):
         # Предотвращаем бесконечную авторизацию
         if self.turcode_login is None or self.turcode_password is None:
             return
+
+        self.tg.notify_admins('Авторизовался')
 
         form_data = {
             'login': self.turcode_login,
@@ -74,9 +84,8 @@ class API:
                 data=form_data,
                 headers=self.headers,
             )
-            auth_cookie = request.headers.get('Set-Cookie')
+            auth_cookie = self._extract_auth_cookie(request.headers.get('Set-Cookie'))
             if auth_cookie is not None:
-                auth_cookie = auth_cookie.replace('auth=', '').strip().replace('auth=', '')
                 self.settings['auth_cookie'] = auth_cookie
                 self.session.cookies.set('auth', self.settings['auth_cookie'])
         except r.exceptions.RequestException as e:
@@ -90,6 +99,7 @@ class API:
             self.auth()
 
         if not self.is_auth:
+            self.logger.info(f'{self.is_auth=}')
             self.settings['is_running'] = False
             self.tg.notify_admins('Меня выкинуло из системы, нужна авторизация\nВыключаю штуку')
             self.tg.notify_watchers('Меня выкинуло из системы, нужна авторизация\nВыключаю штуку')
@@ -116,9 +126,8 @@ class API:
                 self.tg.notify_watchers('Меня блокнуло\nВыключаю штуку')
                 return []
 
-            auth_cookie = request.headers.get('Set-Cookie')
+            auth_cookie = self._extract_auth_cookie(request.headers.get('Set-Cookie'))
             if auth_cookie is not None:
-                auth_cookie = auth_cookie.replace('auth=', '').strip().replace('auth=', '')
                 self.settings['auth_cookie'] = auth_cookie
                 self.session.cookies.set('auth', self.settings['auth_cookie'])
         except r.exceptions.RequestException as e:
@@ -130,13 +139,17 @@ class API:
             self.auth_error_count = 0
         except r.exceptions.JSONDecodeError:
             self.is_auth = False
+            self.settings['is_running'] = False
+            self.tg.notify_admins('Выкинуло\nВыключаю штуку')
+            self.tg.notify_watchers('Выкинуло\nВыключаю штуку')
+            return []
 
-            self.auth_error_count += 1
-            if self.auth_error_count >= 3:
-                self.auth_error_count = 0
-                return []
-            else:
-                return self.get_payouts()
+            # self.auth_error_count += 1
+            # if self.auth_error_count >= 3:
+            #     self.auth_error_count = 0
+            #     return []
+            # else:
+            #     return self.get_payouts()
 
         self.is_auth = True
         self.auth_error_count = 0
@@ -144,8 +157,8 @@ class API:
 
     # Забираем платеж
     def claim_payout(self, payout) -> bool:
-        if not self.is_auth:
-            self.auth()
+        # if not self.is_auth:
+        #     self.auth()
 
         payouts_count_limit = self.settings.get('payouts_limit', 10)
         if self.claimed_payouts_count >= payouts_count_limit:
@@ -189,16 +202,21 @@ class API:
             self.logger.error(f'Request error  {request.status_code} {request.text}:', e)
             return False
 
+        def erow(row: str):
+            if row is None:
+                return None
+            return row.encode('latin-1', 'ignore').decode('utf-8', 'ignore')
+
         with Session(self.settings.engine) as session, session.begin():
             payout_row = Payout(
                 operation_id=payout.get('operation_id', ''),
                 user_id=payout.get('user_id', ''),
                 amount=self.str_to_int(payout.get('amount', 0)),
                 bot_name=self.settings.bot_name,
-                bank_name=payout.get('bank', None),
-                card=payout.get('card', None),
-                phone=payout.get('phone', None),
-                payout_id=payout.get('id', None),
+                # bank_name=erow(payout.get('bank', None)),
+                card=erow(payout.get('card', None)),
+                phone=erow(payout.get('phone', None)),
+                payout_id=erow(payout.get('id', None)),
             )
             if request_data['status']:
                 success_msg = (
@@ -270,6 +288,8 @@ class API:
             all_payouts = self.get_payouts()
             for row in all_payouts:
                 self.claimed_payouts_count += 0 if not row[2] else 1
+
+            time.sleep(1)
 
         if self.claimed_payouts_count >= payouts_count_limit:
             return []
