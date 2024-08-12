@@ -28,7 +28,7 @@ class API:
 
     turcode_login: str
     turcode_password: str
-    is_auth: bool = False
+    is_auth: bool = True
 
     def __init__(self, session: r.Session, settings: Settings, tg: Tg, logger: Logger):
         self.session = session
