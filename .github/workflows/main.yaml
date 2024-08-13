@@ -10,30 +10,30 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        server:
-          - { ip: ${ { secrets.SERVER_1_IP } }, pass: ${ { secrets.SERVER_1_PASS } } }
-          - { ip: ${ { secrets.SERVER_2_IP } }, pass: ${ { secrets.SERVER_2_PASS } } }
-          - { ip: ${ { secrets.SERVER_3_IP } }, pass: ${ { secrets.SERVER_3_PASS } } }
-          - { ip: ${ { secrets.SERVER_4_IP } }, pass: ${ { secrets.SERVER_4_PASS } } }
-          - { ip: ${ { secrets.SERVER_5_IP } }, pass: ${ { secrets.SERVER_5_PASS } } }
-          - { ip: ${ { secrets.SERVER_6_IP } }, pass: ${ { secrets.SERVER_6_PASS } } }
+        server: [
+          { ip: ${ { secrets.SERVER_1_IP } }, pass: ${ { secrets.SERVER_1_PASS } } },
+          { ip: ${ { secrets.SERVER_2_IP } }, pass: ${ { secrets.SERVER_2_PASS } } },
+          { ip: ${ { secrets.SERVER_4_IP } }, pass: ${ { secrets.SERVER_4_PASS } } },
+          { ip: ${ { secrets.SERVER_5_IP } }, pass: ${ { secrets.SERVER_5_PASS } } },
+          { ip: ${ { secrets.SERVER_6_IP } }, pass: ${ { secrets.SERVER_6_PASS } } },
+        ]
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up SSH
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y sshpass
+      - name: Set up SSH
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y sshpass
 
-    - name: Deploy to Server 1
-      env:
-        SSHPASS: ${{ matrix.server.pass }}
-      run: |
-        sshpass -e scp -o StrictHostKeyChecking=no -r ./{main.py,code,alembic.ini} root@${{ matrix.server.ip }}:/root/turcode/
-        sshpass -e ssh root@${{ matrix.server.ip }} '
-          /root/turcode/venv/bin/python -m pip install -r /root/turcode/code/requirements.txt && 
-          cp /root/turcode/code/turcode.service /lib/systemd/system/ && 
-          systemctl daemon-reload && 
-          service turcode restart'
+      - name: Deploy to Server 1
+        env:
+          SSHPASS: ${{ matrix.server.pass }}
+        run: |
+          sshpass -e scp -o StrictHostKeyChecking=no -r ./{main.py,code,alembic.ini} root@${{ matrix.server.ip }}:/root/turcode/
+          sshpass -e ssh root@${{ matrix.server.ip }} '
+            /root/turcode/venv/bin/python -m pip install -r /root/turcode/code/requirements.txt && 
+            cp /root/turcode/code/turcode.service /lib/systemd/system/ && 
+            systemctl daemon-reload && 
+            service turcode restart'
