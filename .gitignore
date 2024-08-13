@@ -7,4 +7,6 @@ settings.json
 transfer_file.yml
 vault.yml
 *.db
-
+.env
+restart.py
+deploy.py
