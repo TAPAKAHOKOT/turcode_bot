@@ -1,0 +1,30 @@
+name: Deploy Code to Multiple Servers
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up SSH
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y sshpass
+
+    - name: Deploy to Server 1
+      env:
+        SSHPASS: ${{ secrets.SERVER_1_PASS }}
+      run: |
+        sshpass -e scp -o StrictHostKeyChecking=no -r ./{main.py,code,alembic.ini} root@${{ secrets.SERVER_1_IP }}:/root/turcode/
+        sshpass -e ssh root@${{ secrets.SERVER_1_IP }} '
+          /root/turcode/venv/bin/python -m pip install -r /root/turcode/code/requirements.txt && 
+          cp /root/turcode/code/turcode.service /lib/systemd/system/ && 
+          systemctl daemon-reload && 
+          service turcode restart'
