@@ -123,7 +123,7 @@ class Tg:
     def _help_command(self, chat_id: int | str):
         self.send_msg(
             chat_id,
-            'Хелпанем немножечко ::))\n\n'
+            'Хелпанем немножечко :)\n\n'
             '/help - список команд\n\n'
             + f'{'Штука':=^20}' + '\n' +
             '/run - включить штуку\n'
