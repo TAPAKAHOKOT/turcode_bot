@@ -353,8 +353,8 @@ class API:
                 'T-Bank',
                 'Сбербанк',
                 'Sberbank',
-                'Райффайзен',
-                'Raiffeisen',
+                # 'Райффайзен',
+                # 'Raiffeisen',
             ]:
                 if bank_name.lower() in lower_payout_bank:
                     bank_is_correct = True
