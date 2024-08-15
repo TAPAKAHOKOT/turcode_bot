@@ -79,7 +79,10 @@ class Tg:
         if update_offset is not None:
             url += f'?offset={update_offset}'
 
-        updates = r.get(url)
+        try:
+            updates = r.get(url)
+        except:
+            return
 
         if updates.status_code == 200:
             updates = updates.json()
