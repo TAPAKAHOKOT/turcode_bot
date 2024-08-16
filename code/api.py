@@ -134,6 +134,11 @@ class API:
             self.logger.error('Request error:', e)
             return []
 
+        if request.status_code == 429:
+            self.tg.notify_admins('Код 429')
+            time.sleep(4)
+            return []
+
         try:
             request_data = request.json()
             self.auth_error_count = 0
