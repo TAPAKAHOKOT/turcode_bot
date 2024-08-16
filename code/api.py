@@ -138,10 +138,14 @@ class API:
             request_data = request.json()
             self.auth_error_count = 0
         except r.exceptions.JSONDecodeError:
-            self.is_auth = False
-            self.settings['is_running'] = False
-            self.tg.notify_admins('Выкинуло\nВыключаю штуку')
-            self.tg.notify_watchers('Выкинуло\nВыключаю штуку')
+            self.auth_error_count += 1
+
+            if self.auth_error_count > 5:
+                self.is_auth = False
+                self.settings['is_running'] = False
+                self.tg.notify_admins('Выкинуло\nВыключаю штуку')
+                self.tg.notify_watchers('Выкинуло\nВыключаю штуку')
+
             return []
 
             # self.auth_error_count += 1

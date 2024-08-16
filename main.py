@@ -70,3 +70,5 @@ while True:
 
         if claimed_payouts_count >= settings.get('payouts_limit', 10):
             break
+
+    time.sleep(1)
