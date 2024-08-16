@@ -148,13 +148,6 @@ class API:
 
             return []
 
-            # self.auth_error_count += 1
-            # if self.auth_error_count >= 3:
-            #     self.auth_error_count = 0
-            #     return []
-            # else:
-            #     return self.get_payouts()
-
         self.is_auth = True
         self.auth_error_count = 0
         return request_data['data']
@@ -293,7 +286,7 @@ class API:
             for row in all_payouts:
                 self.claimed_payouts_count += 0 if not row[2] else 1
 
-            time.sleep(1)
+            time.sleep(2)
 
         if self.claimed_payouts_count >= payouts_count_limit:
             return []
