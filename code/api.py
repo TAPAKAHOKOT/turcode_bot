@@ -287,6 +287,7 @@ class API:
         payouts_count_limit = self.settings.get('payouts_limit', 10)
         if self.claimed_payouts_count is None or self.claimed_payouts_count >= payouts_count_limit:
             self.claimed_payouts_count = 0
+            self.tg.notify_admins('Обновляю claimed_payouts_count')
             all_payouts = self.get_payouts()
             for row in all_payouts:
                 self.claimed_payouts_count += 0 if not row[2] else 1
