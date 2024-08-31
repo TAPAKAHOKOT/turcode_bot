@@ -29,6 +29,12 @@ jobs:
           - name: server6
             ip_secret: SERVER_6_IP
             pass_secret: SERVER_6_PASS
+          - name: server7
+            ip_secret: SERVER_7_IP
+            pass_secret: SERVER_7_PASS
+          - name: server8
+            ip_secret: SERVER_8_IP
+            pass_secret: SERVER_8_PASS
 
     steps:
       - name: Checkout code
