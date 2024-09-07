@@ -166,14 +166,14 @@ class API:
         if self.claimed_payouts_count >= payouts_count_limit:
             return False
 
-        # Чекаем забирался ли платеж другим ботом
-        with Session(self.settings.engine) as session, session.begin():
-            all_bots_operation_payouts_count = Payout.get_count_by_operation_id(
-                session=session,
-                operation_id=payout['operation_id'],
-            )
-            if all_bots_operation_payouts_count > 0:
-                return False
+        # # Чекаем забирался ли платеж другим ботом
+        # with Session(self.settings.engine) as session, session.begin():
+        #     all_bots_operation_payouts_count = Payout.get_count_by_operation_id(
+        #         session=session,
+        #         operation_id=payout['operation_id'],
+        #     )
+        #     if all_bots_operation_payouts_count > 0:
+        #         return False
 
         self.settings.notifications['admins'].append(f'Пробую забрать платеж ({time.time()})')
         form_data = {
