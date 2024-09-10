@@ -301,10 +301,10 @@ class API:
         payouts = []
         self.claimed_payouts_count = 0
         for row in self.get_payouts():
-            claim_btn = row[3]
+            claim_btn = row[2]
             payout_id = claim_btn.split('data-id=')[1].split("'")[1]
 
-            is_able = not row[2]
+            is_able = not row[3]
             if not is_able:
                 self.claimed_payouts_count += 1
                 end_time = row[4].split('data-end-time=')[1].split("'")[1]
