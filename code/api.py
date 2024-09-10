@@ -290,7 +290,7 @@ class API:
             self.tg.notify_admins('Обновляю claimed_payouts_count')
             all_payouts = self.get_payouts()
             for row in all_payouts:
-                self.claimed_payouts_count += 0 if not row[2] else 1
+                self.claimed_payouts_count += 0 if not row[3] else 1
 
             time.sleep(2)
 
@@ -326,12 +326,12 @@ class API:
                         if payout_id not in self.time_ending_notified_payouts:
                             remind_msg_text = (f'❗️У платежа заканчивается время для оплаты\n'
                                                f'{_msg_text}\n'
-                                               f'Operation ID: {row[15]} Сумма: {row[5]}')
+                                               f'Operation ID: {row[16]} Сумма: {row[6]}')
                             self.settings.notifications['admins'].append(remind_msg_text)
                             self.settings.notifications['only_taken'].append(remind_msg_text)
 
                 continue
-            card = row[8]
+            card = row[9]
             card_match = re.search(r'\d+', card)
             if card_match:
                 card = card_match.group(0)
@@ -340,12 +340,12 @@ class API:
                 'time': row[0],
                 'status': row[1],
                 'id': payout_id,
-                'amount': row[5],
-                'bank': row[7],
+                'amount': row[6],
+                'bank': row[8],
                 'card': card,
-                'phone': row[14],
-                'operation_id': row[15],
-                'user_id': row[16],
+                'phone': row[15],
+                'operation_id': row[16],
+                'user_id': row[17],
             }
 
             bank_is_correct = False
