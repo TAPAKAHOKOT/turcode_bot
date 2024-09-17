@@ -51,7 +51,7 @@ async def main():
 
 
 if __name__ == '__main__':
-    loop = asyncio.get_event_loop()
+    loop = asyncio.new_event_loop()
     loop.add_signal_handler(signal.SIGINT, handle_sigint)
     loop.add_signal_handler(signal.SIGTERM, handle_sigint)
 
