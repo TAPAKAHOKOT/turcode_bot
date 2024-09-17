@@ -1,0 +1,1428 @@
+2024-09-15 17:07:01,945 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:07:05,260 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:07:05,655 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:07:11,739 - aiogram.event - INFO - Update id=791353668 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 17:07:19,351 - aiogram.event - INFO - Update id=791353669 is handled. Duration 655 ms by bot id=6817635356
+2024-09-15 17:07:24,588 - aiogram.event - INFO - Update id=791353670 is not handled. Duration 4 ms by bot id=6817635356
+2024-09-15 17:07:38,742 - aiogram.event - INFO - Update id=791353671 is not handled. Duration 2 ms by bot id=6817635356
+2024-09-15 17:09:05,849 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:09:05,851 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:09:05,851 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:09:09,399 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:09:12,544 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:09:12,848 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:09:16,342 - aiogram.event - INFO - Update id=791353672 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 17:09:24,677 - aiogram.event - INFO - Update id=791353673 is not handled. Duration 2 ms by bot id=6817635356
+2024-09-15 17:09:31,619 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:09:31,620 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:09:31,620 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:11:00,136 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:11:11,858 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:11:15,444 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:11:15,795 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:11:17,602 - aiogram.event - INFO - Update id=791353674 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 17:11:22,465 - aiogram.event - INFO - Update id=791353675 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 17:11:25,157 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:11:25,158 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:11:25,158 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:11:47,133 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:11:50,511 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:11:50,815 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:11:53,845 - aiogram.event - INFO - Update id=791353676 is handled. Duration 382 ms by bot id=6817635356
+2024-09-15 17:11:57,311 - aiogram.event - INFO - Update id=791353677 is not handled. Duration 0 ms by bot id=6817635356
+2024-09-15 17:12:01,988 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:12:01,989 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:12:01,989 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:21:54,305 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:21:57,312 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:21:57,727 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:22:03,791 - aiogram.event - INFO - Update id=791353678 is not handled. Duration 2 ms by bot id=6817635356
+2024-09-15 17:22:09,726 - aiogram.event - INFO - Update id=791353679 is handled. Duration 534 ms by bot id=6817635356
+2024-09-15 17:22:10,772 - aiogram.event - INFO - Update id=791353680 is not handled. Duration 0 ms by bot id=6817635356
+2024-09-15 17:22:15,278 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:22:15,279 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:22:15,279 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:23:45,253 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:23:48,098 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:23:48,527 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:23:52,288 - aiogram.event - INFO - Update id=791353681 is handled. Duration 335 ms by bot id=6817635356
+2024-09-15 17:23:56,345 - aiogram.event - INFO - Update id=791353682 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 17:24:06,989 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:24:06,990 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:24:06,990 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:24:11,970 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:24:15,070 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:24:15,370 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:24:25,154 - aiogram.event - INFO - Update id=791353683 is handled. Duration 348 ms by bot id=6817635356
+2024-09-15 17:24:30,482 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:24:30,484 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:24:30,484 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:24:38,038 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:24:40,978 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:24:41,301 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:24:43,572 - aiogram.event - INFO - Update id=791353684 is not handled. Duration 0 ms by bot id=6817635356
+2024-09-15 17:24:47,971 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:24:47,972 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:24:47,972 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:25:36,419 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:25:39,382 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:25:39,731 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:25:49,458 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:25:49,460 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:25:49,460 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:25:53,669 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:25:56,772 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:25:57,102 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:26:00,523 - aiogram.event - INFO - Update id=791353685 is handled. Duration 418 ms by bot id=6817635356
+2024-09-15 17:26:03,581 - aiogram.event - INFO - Update id=791353686 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 17:26:28,213 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:26:28,214 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:26:28,214 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:36:18,081 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:36:21,630 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:36:22,093 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:36:57,323 - aiogram.event - INFO - Update id=791353687 is handled. Duration 497 ms by bot id=6817635356
+2024-09-15 17:37:04,599 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:37:04,601 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:37:04,601 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:39:04,025 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:39:06,974 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:39:07,357 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:39:10,244 - aiogram.event - INFO - Update id=791353688 is not handled. Duration 0 ms by bot id=6817635356
+2024-09-15 17:39:14,266 - aiogram.event - INFO - Update id=791353689 is handled. Duration 332 ms by bot id=6817635356
+2024-09-15 17:39:18,497 - aiogram.event - INFO - Update id=791353690 is not handled. Duration 4 ms by bot id=6817635356
+2024-09-15 17:39:22,276 - aiogram.event - INFO - Update id=791353691 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 17:39:23,406 - aiogram.event - INFO - Update id=791353692 is not handled. Duration 0 ms by bot id=6817635356
+2024-09-15 17:39:32,227 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:39:32,228 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:39:32,228 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:41:16,077 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:41:18,904 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:41:19,297 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:41:22,392 - aiogram.event - INFO - Update id=791353693 is handled. Duration 401 ms by bot id=6817635356
+2024-09-15 17:42:58,386 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:42:58,388 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:42:58,388 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:43:01,733 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:43:04,899 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:43:05,208 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:43:07,434 - aiogram.event - INFO - Update id=791353694 is handled. Duration 465 ms by bot id=6817635356
+2024-09-15 17:43:08,900 - aiogram.event - INFO - Update id=791353695 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 17:43:12,284 - aiogram.event - INFO - Update id=791353696 is not handled. Duration 0 ms by bot id=6817635356
+2024-09-15 17:43:16,087 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:43:16,088 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:43:16,088 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:44:29,336 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:44:34,001 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:44:34,441 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:44:36,346 - aiogram.event - INFO - Update id=791353697 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 17:44:38,887 - aiogram.event - INFO - Update id=791353698 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 17:44:41,254 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:44:41,254 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:44:41,254 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:45:01,025 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:45:04,278 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:45:04,591 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:45:07,905 - aiogram.event - INFO - Update id=791353699 is handled. Duration 348 ms by bot id=6817635356
+2024-09-15 17:45:09,118 - aiogram.event - INFO - Update id=791353700 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 17:45:13,053 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:45:13,054 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:45:13,055 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:47:14,167 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:47:18,775 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:47:19,119 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:47:21,411 - aiogram.event - INFO - Update id=791353701 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 17:47:25,817 - aiogram.event - INFO - Update id=791353702 is handled. Duration 492 ms by bot id=6817635356
+2024-09-15 17:47:28,969 - aiogram.event - INFO - Update id=791353703 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 17:47:31,694 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:47:31,695 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:47:31,695 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:51:24,084 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:51:27,091 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:51:27,452 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:51:30,923 - aiogram.event - INFO - Update id=791353704 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 17:51:57,694 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:51:57,696 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:51:57,696 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:52:00,110 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:52:03,266 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:52:03,568 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:52:05,284 - aiogram.event - INFO - Update id=791353705 is not handled. Duration 0 ms by bot id=6817635356
+2024-09-15 17:52:07,861 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:52:07,863 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:52:07,863 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:52:36,111 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:52:38,970 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:52:39,291 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:52:41,519 - aiogram.event - INFO - Update id=791353706 is handled. Duration 319 ms by bot id=6817635356
+2024-09-15 17:52:45,089 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:52:45,091 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:52:45,091 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:53:15,705 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:53:19,050 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:53:19,456 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:53:22,340 - aiogram.event - INFO - Update id=791353707 is handled. Duration 493 ms by bot id=6817635356
+2024-09-15 17:53:23,457 - aiogram.event - INFO - Update id=791353708 is handled. Duration 175 ms by bot id=6817635356
+2024-09-15 17:53:33,829 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:53:33,830 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:53:33,830 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:53:41,384 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:53:44,272 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:53:44,580 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:53:48,680 - aiogram.event - INFO - Update id=791353709 is handled. Duration 315 ms by bot id=6817635356
+2024-09-15 17:53:49,476 - aiogram.event - INFO - Update id=791353710 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 17:53:51,975 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:53:51,976 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:53:51,976 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:54:07,426 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:54:10,921 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:54:11,292 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:54:16,978 - aiogram.event - INFO - Update id=791353711 is handled. Duration 394 ms by bot id=6817635356
+2024-09-15 17:54:17,819 - aiogram.event - INFO - Update id=791353712 is not handled. Duration 0 ms by bot id=6817635356
+2024-09-15 17:54:51,812 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:54:51,815 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:54:51,815 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:54:54,986 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:54:58,359 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:54:58,730 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:55:00,639 - aiogram.event - INFO - Update id=791353713 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 17:55:12,352 - aiogram.event - INFO - Update id=791353714 is handled. Duration 364 ms by bot id=6817635356
+2024-09-15 17:55:15,942 - aiogram.event - INFO - Update id=791353715 is not handled. Duration 0 ms by bot id=6817635356
+2024-09-15 17:55:20,339 - aiogram.event - INFO - Update id=791353716 is not handled. Duration 0 ms by bot id=6817635356
+2024-09-15 17:55:31,589 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:55:31,590 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:55:31,590 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:55:46,721 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:55:49,784 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:55:50,071 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:55:52,354 - aiogram.event - INFO - Update id=791353717 is not handled. Duration 0 ms by bot id=6817635356
+2024-09-15 17:55:58,174 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:55:58,178 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:55:58,179 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:56:03,413 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:56:06,312 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:56:06,614 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:56:11,745 - aiogram.event - INFO - Update id=791353718 is not handled. Duration 0 ms by bot id=6817635356
+2024-09-15 17:56:17,986 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:56:17,989 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:56:17,989 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:56:30,903 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:56:33,891 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:56:34,183 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:56:37,263 - aiogram.event - INFO - Update id=791353719 is handled. Duration 461 ms by bot id=6817635356
+2024-09-15 17:56:42,007 - aiogram.event - INFO - Update id=791353720 is handled. Duration 187 ms by bot id=6817635356
+2024-09-15 17:56:46,213 - aiogram.event - INFO - Update id=791353721 is handled. Duration 120 ms by bot id=6817635356
+2024-09-15 17:56:48,258 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 17:56:48,258 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:56:48,258 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 17:59:48,920 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 17:59:52,230 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 17:59:52,603 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 17:59:55,935 - aiogram.event - INFO - Update id=791353722 is handled. Duration 355 ms by bot id=6817635356
+2024-09-15 17:59:59,557 - aiogram.event - INFO - Update id=791353723 is handled. Duration 165 ms by bot id=6817635356
+2024-09-15 18:00:03,510 - aiogram.event - INFO - Update id=791353724 is handled. Duration 243 ms by bot id=6817635356
+2024-09-15 18:00:06,084 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:00:06,086 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:00:06,086 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:00:11,627 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:00:14,488 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:00:14,785 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:00:17,522 - aiogram.event - INFO - Update id=791353725 is handled. Duration 561 ms by bot id=6817635356
+2024-09-15 18:00:18,470 - aiogram.event - INFO - Update id=791353726 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 18:00:23,997 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:00:23,999 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:00:23,999 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:00:32,474 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:00:35,504 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:00:35,796 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:00:39,382 - aiogram.event - INFO - Update id=791353727 is handled. Duration 571 ms by bot id=6817635356
+2024-09-15 18:00:41,773 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:00:41,773 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:00:41,773 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:04:21,393 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:04:24,405 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:04:24,788 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:04:26,546 - aiogram.event - INFO - Update id=791353728 is handled. Duration 370 ms by bot id=6817635356
+2024-09-15 18:04:27,232 - aiogram.event - INFO - Update id=791353729 is not handled. Duration 0 ms by bot id=6817635356
+2024-09-15 18:04:31,496 - aiogram.event - INFO - Update id=791353730 is not handled. Duration 2 ms by bot id=6817635356
+2024-09-15 18:04:36,259 - aiogram.event - INFO - Update id=791353731 is not handled. Duration 2 ms by bot id=6817635356
+2024-09-15 18:04:38,590 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:04:38,591 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:04:38,591 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:05:31,233 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:05:42,284 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:05:45,564 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:05:45,875 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:05:47,804 - aiogram.event - INFO - Update id=791353732 is handled. Duration 449 ms by bot id=6817635356
+2024-09-15 18:05:51,368 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:05:51,370 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:05:51,370 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:06:58,077 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:07:01,895 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:07:02,533 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:07:04,695 - aiogram.event - INFO - Update id=791353733 is handled. Duration 437 ms by bot id=6817635356
+2024-09-15 18:07:05,848 - aiogram.event - INFO - Update id=791353734 is handled. Duration 170 ms by bot id=6817635356
+2024-09-15 18:07:07,825 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:07:07,826 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:07:07,826 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:07:49,996 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:07:54,719 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:07:55,089 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:07:56,873 - aiogram.event - INFO - Update id=791353735 is handled. Duration 517 ms by bot id=6817635356
+2024-09-15 18:07:57,729 - aiogram.event - INFO - Update id=791353736 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 18:07:59,558 - aiogram.event - INFO - Update id=791353737 is not handled. Duration 0 ms by bot id=6817635356
+2024-09-15 18:08:01,328 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:08:01,329 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:08:01,329 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:11:08,878 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:11:55,177 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:11:58,219 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:11:58,591 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:12:02,551 - aiogram.event - INFO - Update id=791353738 is handled. Duration 341 ms by bot id=6817635356
+2024-09-15 18:12:06,408 - aiogram.event - INFO - Update id=791353739 is handled. Duration 275 ms by bot id=6817635356
+2024-09-15 18:12:18,229 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:12:18,229 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:12:18,229 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:12:21,152 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:12:23,968 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:12:24,272 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:12:27,449 - aiogram.event - INFO - Update id=791353740 is handled. Duration 392 ms by bot id=6817635356
+2024-09-15 18:12:34,781 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:12:34,781 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:12:34,781 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:13:07,059 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:13:10,168 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:13:10,455 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:13:14,794 - aiogram.event - INFO - Update id=791353741 is handled. Duration 336 ms by bot id=6817635356
+2024-09-15 18:13:15,738 - aiogram.event - INFO - Update id=791353742 is handled. Duration 150 ms by bot id=6817635356
+2024-09-15 18:13:16,751 - aiogram.event - INFO - Update id=791353743 is handled. Duration 214 ms by bot id=6817635356
+2024-09-15 18:13:21,701 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:13:21,702 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:13:21,702 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:13:24,449 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:13:27,602 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:13:27,937 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:13:29,840 - aiogram.event - INFO - Update id=791353744 is not handled. Duration 0 ms by bot id=6817635356
+2024-09-15 18:13:34,342 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:13:34,343 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:13:34,343 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:18:43,768 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:18:46,794 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:18:47,203 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:18:51,861 - aiogram.event - INFO - Update id=791353745 is handled. Duration 462 ms by bot id=6817635356
+2024-09-15 18:18:54,872 - aiogram.event - INFO - Update id=791353746 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 18:18:59,359 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:18:59,360 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:18:59,360 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:19:54,762 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:19:57,685 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:19:58,049 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:20:00,404 - aiogram.event - INFO - Update id=791353747 is handled. Duration 354 ms by bot id=6817635356
+2024-09-15 18:20:01,939 - aiogram.event - INFO - Update id=791353748 is handled. Duration 548 ms by bot id=6817635356
+2024-09-15 18:20:04,581 - aiogram.event - INFO - Update id=791353749 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 18:20:06,705 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:20:06,706 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:20:06,706 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:23:33,415 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:23:36,561 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:23:37,020 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:23:39,366 - aiogram.event - INFO - Update id=791353750 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 18:23:56,790 - aiogram.event - INFO - Update id=791353751 is handled. Duration 379 ms by bot id=6817635356
+2024-09-15 18:23:58,235 - aiogram.event - INFO - Update id=791353752 is handled. Duration 527 ms by bot id=6817635356
+2024-09-15 18:23:59,459 - aiogram.event - INFO - Update id=791353753 is handled. Duration 129 ms by bot id=6817635356
+2024-09-15 18:24:01,339 - aiogram.event - INFO - Update id=791353754 is handled. Duration 536 ms by bot id=6817635356
+2024-09-15 18:24:02,873 - aiogram.event - INFO - Update id=791353755 is handled. Duration 202 ms by bot id=6817635356
+2024-09-15 18:24:04,673 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:24:04,675 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:24:04,675 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:26:34,489 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:26:37,527 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:26:37,817 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:26:42,442 - aiogram.event - INFO - Update id=791353756 is handled. Duration 840 ms by bot id=6817635356
+2024-09-15 18:26:44,219 - aiogram.event - INFO - Update id=791353757 is handled. Duration 149 ms by bot id=6817635356
+2024-09-15 18:26:45,814 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:26:45,815 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:26:45,815 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:38:43,391 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:39:07,572 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:39:10,817 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:39:11,232 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:39:14,236 - aiogram.event - INFO - Update id=791353758 is not handled. Duration 467 ms by bot id=6817635356
+2024-09-15 18:39:14,237 - aiogram.event - ERROR - Cause exception while process update id=791353758 by bot id=6817635356
+ProgrammingError: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.PostgresSyntaxError'>: syntax error at or near "$1"
+[SQL: SELECT users.id, users.name, users.chat_id, users.is_admin 
+FROM users 
+WHERE EXISTS (SELECT 1 
+FROM bots, user_bot_association 
+WHERE users.id = user_bot_association.user_id AND bots.id = user_bot_association.bot_id AND bots.id IS $1::INTEGER)]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 514, in _prepare_and_execute
+    prepared_stmt, attributes = await adapt_connection._prepare(
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 760, in _prepare
+    prepared_stmt = await self._connection.prepare(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/asyncpg/connection.py", line 636, in prepare
+    return await self._prepare(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/asyncpg/connection.py", line 654, in _prepare
+    stmt = await self._get_statement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/asyncpg/connection.py", line 433, in _get_statement
+    statement = await self._protocol.prepare(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "asyncpg/protocol/protocol.pyx", line 166, in prepare
+asyncpg.exceptions.PostgresSyntaxError: syntax error at or near "$1"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 572, in execute
+    self._adapt_connection.await_(
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 550, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 501, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 784, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.ProgrammingError: <class 'asyncpg.exceptions.PostgresSyntaxError'>: syntax error at or near "$1"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/code/tg.py", line 374, in _show_users_in_bot
+    bot_users = await User.get_by_bot_id(session, bot_id)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/code/models.py", line 42, in get_by_bot_id
+    result = await session.execute(select(User).filter(User.bots.any(Bot.id.is_(bot_id))))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/ext/asyncio/session.py", line 461, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2236, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2353, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 572, in execute
+    self._adapt_connection.await_(
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 550, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 501, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 784, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.ProgrammingError: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.PostgresSyntaxError'>: syntax error at or near "$1"
+[SQL: SELECT users.id, users.name, users.chat_id, users.is_admin 
+FROM users 
+WHERE EXISTS (SELECT 1 
+FROM bots, user_bot_association 
+WHERE users.id = user_bot_association.user_id AND bots.id = user_bot_association.bot_id AND bots.id IS $1::INTEGER)]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2024-09-15 18:39:17,023 - aiogram.event - INFO - Update id=791353759 is handled. Duration 459 ms by bot id=6817635356
+2024-09-15 18:39:19,113 - aiogram.event - INFO - Update id=791353760 is not handled. Duration 468 ms by bot id=6817635356
+2024-09-15 18:39:19,113 - aiogram.event - ERROR - Cause exception while process update id=791353760 by bot id=6817635356
+ProgrammingError: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.PostgresSyntaxError'>: syntax error at or near "$1"
+[SQL: SELECT users.id, users.name, users.chat_id, users.is_admin 
+FROM users 
+WHERE EXISTS (SELECT 1 
+FROM bots, user_bot_association 
+WHERE users.id = user_bot_association.user_id AND bots.id = user_bot_association.bot_id AND bots.id IS $1::INTEGER)]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 514, in _prepare_and_execute
+    prepared_stmt, attributes = await adapt_connection._prepare(
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 760, in _prepare
+    prepared_stmt = await self._connection.prepare(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/asyncpg/connection.py", line 636, in prepare
+    return await self._prepare(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/asyncpg/connection.py", line 654, in _prepare
+    stmt = await self._get_statement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/asyncpg/connection.py", line 433, in _get_statement
+    statement = await self._protocol.prepare(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "asyncpg/protocol/protocol.pyx", line 166, in prepare
+asyncpg.exceptions.PostgresSyntaxError: syntax error at or near "$1"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 572, in execute
+    self._adapt_connection.await_(
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 550, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 501, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 784, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.ProgrammingError: <class 'asyncpg.exceptions.PostgresSyntaxError'>: syntax error at or near "$1"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/code/tg.py", line 374, in _show_users_in_bot
+    bot_users = await User.get_by_bot_id(session, bot_id)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/code/models.py", line 42, in get_by_bot_id
+    result = await session.execute(select(User).filter(User.bots.any(Bot.id.is_(bot_id))))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/ext/asyncio/session.py", line 461, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2236, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2353, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 572, in execute
+    self._adapt_connection.await_(
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 550, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 501, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 784, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.ProgrammingError: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.PostgresSyntaxError'>: syntax error at or near "$1"
+[SQL: SELECT users.id, users.name, users.chat_id, users.is_admin 
+FROM users 
+WHERE EXISTS (SELECT 1 
+FROM bots, user_bot_association 
+WHERE users.id = user_bot_association.user_id AND bots.id = user_bot_association.bot_id AND bots.id IS $1::INTEGER)]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2024-09-15 18:39:23,394 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:39:23,395 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:39:23,395 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:42:09,941 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:42:13,114 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:42:13,491 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:42:17,951 - aiogram.event - INFO - Update id=791353761 is handled. Duration 887 ms by bot id=6817635356
+2024-09-15 18:42:20,849 - aiogram.event - INFO - Update id=791353762 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 18:42:27,690 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:42:27,690 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:42:27,691 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:43:21,916 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:43:24,825 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:43:25,109 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:43:27,298 - aiogram.event - INFO - Update id=791353763 is not handled. Duration 1 ms by bot id=6817635356
+2024-09-15 18:43:27,298 - aiogram.event - ERROR - Cause exception while process update id=791353763 by bot id=6817635356
+TypeError: 'UserCallback' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/code/tg.py", line 412, in _toggle_user_in_bot
+    bot_id = int(callback_data['bot_id'])
+                 ~~~~~~~~~~~~~^^^^^^^^^^
+TypeError: 'UserCallback' object is not subscriptable
+2024-09-15 18:43:51,054 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:43:51,056 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:43:51,056 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:43:53,739 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:43:56,694 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:43:56,974 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:44:01,073 - aiogram.event - INFO - Update id=791353764 is not handled. Duration 698 ms by bot id=6817635356
+2024-09-15 18:44:01,074 - aiogram.event - ERROR - Cause exception while process update id=791353764 by bot id=6817635356
+ProgrammingError: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.PostgresSyntaxError'>: syntax error at or near "$1"
+[SQL: SELECT users.id, users.name, users.chat_id, users.is_admin 
+FROM users 
+WHERE users.id IS $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 514, in _prepare_and_execute
+    prepared_stmt, attributes = await adapt_connection._prepare(
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 760, in _prepare
+    prepared_stmt = await self._connection.prepare(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/asyncpg/connection.py", line 636, in prepare
+    return await self._prepare(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/asyncpg/connection.py", line 654, in _prepare
+    stmt = await self._get_statement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/asyncpg/connection.py", line 433, in _get_statement
+    statement = await self._protocol.prepare(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "asyncpg/protocol/protocol.pyx", line 166, in prepare
+asyncpg.exceptions.PostgresSyntaxError: syntax error at or near "$1"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 572, in execute
+    self._adapt_connection.await_(
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 550, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 501, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 784, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.ProgrammingError: <class 'asyncpg.exceptions.PostgresSyntaxError'>: syntax error at or near "$1"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/code/tg.py", line 418, in _toggle_user_in_bot
+    user = await User.get_by_id(session, user_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/code/models.py", line 37, in get_by_id
+    result = await session.execute(select(User).filter(cls.id.is_(user_id)))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/ext/asyncio/session.py", line 461, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2236, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2353, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 572, in execute
+    self._adapt_connection.await_(
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 550, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 501, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 784, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.ProgrammingError: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.PostgresSyntaxError'>: syntax error at or near "$1"
+[SQL: SELECT users.id, users.name, users.chat_id, users.is_admin 
+FROM users 
+WHERE users.id IS $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2024-09-15 18:44:30,212 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:44:30,214 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:44:30,215 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:44:33,049 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:44:36,177 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:44:36,496 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:44:40,202 - aiogram.event - INFO - Update id=791353765 is not handled. Duration 1539 ms by bot id=6817635356
+2024-09-15 18:44:40,202 - aiogram.event - ERROR - Cause exception while process update id=791353765 by bot id=6817635356
+TelegramBadRequest: Telegram server says - Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+Traceback (most recent call last):
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/code/tg.py", line 428, in _toggle_user_in_bot
+    return await self._show_users_in_bot(callback_query, bot_id=bot_id, page=page)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/code/tg.py", line 406, in _show_users_in_bot
+    return await callback_query.message.edit_text(f"Список пользователей бота", reply_markup=markup)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/methods/base.py", line 84, in emit
+    return await bot(self)
+           ^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/client/bot.py", line 488, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/client/session/base.py", line 254, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/client/session/aiohttp.py", line 189, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/client/session/base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+2024-09-15 18:44:52,431 - aiogram.event - INFO - Update id=791353766 is handled. Duration 353 ms by bot id=6817635356
+2024-09-15 18:44:53,959 - aiogram.event - INFO - Update id=791353767 is handled. Duration 523 ms by bot id=6817635356
+2024-09-15 18:44:56,338 - aiogram.event - INFO - Update id=791353768 is not handled. Duration 891 ms by bot id=6817635356
+2024-09-15 18:44:56,338 - aiogram.event - ERROR - Cause exception while process update id=791353768 by bot id=6817635356
+TelegramBadRequest: Telegram server says - Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+Traceback (most recent call last):
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/code/tg.py", line 428, in _toggle_user_in_bot
+    return await self._show_users_in_bot(callback_query, bot_id=bot_id, page=page)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/code/tg.py", line 406, in _show_users_in_bot
+    return await callback_query.message.edit_text(f"Список пользователей бота", reply_markup=markup)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/methods/base.py", line 84, in emit
+    return await bot(self)
+           ^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/client/bot.py", line 488, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/client/session/base.py", line 254, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/client/session/aiohttp.py", line 189, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/client/session/base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+2024-09-15 18:45:03,614 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:45:03,616 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:45:03,616 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:45:16,328 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:45:19,303 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:45:19,595 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:45:23,951 - aiogram.event - INFO - Update id=791353769 is handled. Duration 1793 ms by bot id=6817635356
+2024-09-15 18:45:27,991 - aiogram.event - INFO - Update id=791353770 is handled. Duration 124 ms by bot id=6817635356
+2024-09-15 18:45:29,309 - aiogram.event - INFO - Update id=791353771 is handled. Duration 472 ms by bot id=6817635356
+2024-09-15 18:45:41,051 - aiogram.event - INFO - Update id=791353772 is handled. Duration 1186 ms by bot id=6817635356
+2024-09-15 18:45:54,729 - aiogram.event - INFO - Update id=791353773 is handled. Duration 498 ms by bot id=6817635356
+2024-09-15 18:46:05,609 - aiogram.event - INFO - Update id=791353774 is handled. Duration 584 ms by bot id=6817635356
+2024-09-15 18:46:10,544 - aiogram.event - INFO - Update id=791353775 is handled. Duration 449 ms by bot id=6817635356
+2024-09-15 18:46:16,240 - aiogram.event - INFO - Update id=791353776 is handled. Duration 596 ms by bot id=6817635356
+2024-09-15 18:46:22,663 - aiogram.event - INFO - Update id=791353777 is handled. Duration 1062 ms by bot id=6817635356
+2024-09-15 18:46:28,061 - aiogram.event - INFO - Update id=791353778 is handled. Duration 472 ms by bot id=6817635356
+2024-09-15 18:46:33,686 - aiogram.event - INFO - Update id=791353779 is handled. Duration 464 ms by bot id=6817635356
+2024-09-15 18:46:38,492 - aiogram.event - INFO - Update id=791353780 is handled. Duration 448 ms by bot id=6817635356
+2024-09-15 18:46:43,890 - aiogram.event - INFO - Update id=791353781 is handled. Duration 444 ms by bot id=6817635356
+2024-09-15 18:46:49,580 - aiogram.event - INFO - Update id=791353782 is handled. Duration 502 ms by bot id=6817635356
+2024-09-15 18:46:55,216 - aiogram.event - INFO - Update id=791353783 is handled. Duration 244 ms by bot id=6817635356
+2024-09-15 18:46:57,306 - aiogram.event - INFO - Update id=791353784 is handled. Duration 854 ms by bot id=6817635356
+2024-09-15 18:47:03,541 - aiogram.event - INFO - Update id=791353785 is handled. Duration 1127 ms by bot id=6817635356
+2024-09-15 18:47:06,099 - aiogram.event - INFO - Update id=791353786 is handled. Duration 1121 ms by bot id=6817635356
+2024-09-15 18:47:29,767 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:47:29,769 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:47:29,769 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:48:55,230 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:48:58,470 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:48:59,824 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:49:02,573 - aiogram.event - INFO - Update id=791353787 is handled. Duration 359 ms by bot id=6817635356
+2024-09-15 18:49:04,361 - aiogram.event - INFO - Update id=791353788 is handled. Duration 683 ms by bot id=6817635356
+2024-09-15 18:49:06,262 - aiogram.event - INFO - Update id=791353789 is handled. Duration 645 ms by bot id=6817635356
+2024-09-15 18:49:08,244 - aiogram.event - INFO - Update id=791353790 is handled. Duration 621 ms by bot id=6817635356
+2024-09-15 18:49:11,207 - aiogram.event - INFO - Update id=791353791 is handled. Duration 1413 ms by bot id=6817635356
+2024-09-15 18:49:12,947 - aiogram.event - INFO - Update id=791353792 is handled. Duration 979 ms by bot id=6817635356
+2024-09-15 18:49:14,553 - aiogram.event - INFO - Update id=791353793 is handled. Duration 969 ms by bot id=6817635356
+2024-09-15 18:49:15,926 - aiogram.event - INFO - Update id=791353794 is handled. Duration 617 ms by bot id=6817635356
+2024-09-15 18:49:17,350 - aiogram.event - INFO - Update id=791353795 is handled. Duration 462 ms by bot id=6817635356
+2024-09-15 18:49:19,503 - aiogram.event - INFO - Update id=791353796 is handled. Duration 1102 ms by bot id=6817635356
+2024-09-15 18:49:21,095 - aiogram.event - INFO - Update id=791353797 is handled. Duration 1096 ms by bot id=6817635356
+2024-09-15 18:49:22,775 - aiogram.event - INFO - Update id=791353798 is handled. Duration 979 ms by bot id=6817635356
+2024-09-15 18:49:42,200 - aiogram.event - INFO - Update id=791353799 is handled. Duration 327 ms by bot id=6817635356
+2024-09-15 18:49:45,109 - aiogram.event - INFO - Update id=791353800 is handled. Duration 498 ms by bot id=6817635356
+2024-09-15 18:49:47,096 - aiogram.event - INFO - Update id=791353801 is handled. Duration 553 ms by bot id=6817635356
+2024-09-15 18:49:49,337 - aiogram.event - INFO - Update id=791353802 is handled. Duration 997 ms by bot id=6817635356
+2024-09-15 18:49:51,417 - aiogram.event - INFO - Update id=791353803 is handled. Duration 1063 ms by bot id=6817635356
+2024-09-15 18:49:52,662 - aiogram.event - INFO - Update id=791353804 is handled. Duration 536 ms by bot id=6817635356
+2024-09-15 18:49:54,838 - aiogram.event - INFO - Update id=791353805 is handled. Duration 1110 ms by bot id=6817635356
+2024-09-15 18:49:56,538 - aiogram.event - INFO - Update id=791353806 is handled. Duration 997 ms by bot id=6817635356
+2024-09-15 18:49:58,562 - aiogram.event - INFO - Update id=791353807 is handled. Duration 999 ms by bot id=6817635356
+2024-09-15 18:50:02,293 - aiogram.event - INFO - Update id=791353808 is handled. Duration 1086 ms by bot id=6817635356
+2024-09-15 18:50:07,195 - aiogram.event - INFO - Update id=791353809 is handled. Duration 148 ms by bot id=6817635356
+2024-09-15 18:50:25,135 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:50:25,136 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:50:25,137 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:53:25,342 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:53:28,972 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:53:29,516 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:53:30,645 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:53:30,646 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:53:30,646 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:57:29,638 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:57:32,554 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:57:32,919 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:57:42,061 - aiogram.event - INFO - Update id=791353810 is handled. Duration 403 ms by bot id=6817635356
+2024-09-15 18:57:54,805 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:57:54,806 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:57:54,806 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:58:02,113 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:58:05,494 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:58:05,899 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:58:08,606 - aiogram.event - INFO - Update id=791353811 is handled. Duration 402 ms by bot id=6817635356
+2024-09-15 18:58:29,028 - aiogram.event - INFO - Update id=791353812 is handled. Duration 347 ms by bot id=6817635356
+2024-09-15 18:58:33,023 - aiogram.event - INFO - Update id=791353813 is handled. Duration 128 ms by bot id=6817635356
+2024-09-15 18:58:46,590 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:58:46,590 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:58:46,590 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 18:59:33,337 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 18:59:36,338 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 18:59:36,636 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:59:45,131 - aiogram.event - INFO - Update id=791353814 is handled. Duration 361 ms by bot id=6817635356
+2024-09-15 18:59:51,759 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 18:59:51,760 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 18:59:51,760 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 19:03:24,159 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 19:03:27,032 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 19:03:27,509 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 19:03:32,517 - aiogram.event - INFO - Update id=791353815 is not handled. Duration 0 ms by bot id=6817635356
+2024-09-15 19:03:32,517 - aiogram.event - ERROR - Cause exception while process update id=791353815 by bot id=6817635356
+TypeError: Bot.set_is_running() missing 1 required positional argument: 'is_running'
+Traceback (most recent call last):
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/code/tg.py", line 177, in _run_command
+    self.runner.cur_bot.set_is_running(True)
+TypeError: Bot.set_is_running() missing 1 required positional argument: 'is_running'
+2024-09-15 19:03:38,369 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 19:03:38,370 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 19:03:38,370 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 19:03:52,295 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 19:03:55,273 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 19:03:55,609 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 19:04:02,333 - aiogram.event - INFO - Update id=791353816 is handled. Duration 465 ms by bot id=6817635356
+2024-09-15 19:04:09,269 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 19:04:09,271 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 19:04:09,271 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 19:04:22,695 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 19:04:26,594 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 19:04:27,078 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 19:04:30,554 - aiogram.event - INFO - Update id=791353817 is not handled. Duration 2 ms by bot id=6817635356
+2024-09-15 19:04:30,554 - aiogram.event - ERROR - Cause exception while process update id=791353817 by bot id=6817635356
+CompileError: Unconsumed column names: is_running
+Traceback (most recent call last):
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/code/tg.py", line 177, in _run_command
+    await self.runner.cur_bot.set_is_running(session, True)
+  File "/Users/cloud/Code/Py/lesha/turcode/code/models.py", line 91, in set_is_running
+    await session.execute(update(User).where(User.id == self.id).values(is_running=is_running))
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/ext/asyncio/session.py", line 461, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 190, in greenlet_spawn
+    result = context.switch(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2236, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/orm/bulk_persistence.py", line 1624, in orm_execute_statement
+    return super().orm_execute_statement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1632, in _execute_clauseelement
+    compiled_sql, extracted_params, cache_hit = elem._compile_w_cache(
+                                                ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 703, in _compile_w_cache
+    compiled_sql = self._compiler(
+                   ^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 316, in _compiler
+    return dialect.statement_compiler(dialect, self, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/sql/compiler.py", line 1429, in __init__
+    Compiled.__init__(self, dialect, statement, **kwargs)
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/sql/compiler.py", line 870, in __init__
+    self.string = self.process(self.statement, **compile_kwargs)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/sql/compiler.py", line 915, in process
+    return obj._compiler_dispatch(self, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/sql/annotation.py", line 344, in _compiler_dispatch
+    return self.__element.__class__._compiler_dispatch(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/sql/visitors.py", line 141, in _compiler_dispatch
+    return meth(self, **kw)  # type: ignore  # noqa: E501
+           ^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/sql/compiler.py", line 6204, in visit_update
+    crud_params_struct = crud._get_crud_params(
+                         ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cloud/Code/Py/lesha/turcode/venv/lib/python3.12/site-packages/sqlalchemy/sql/crud.py", line 335, in _get_crud_params
+    raise exc.CompileError(
+sqlalchemy.exc.CompileError: Unconsumed column names: is_running
+2024-09-15 19:04:39,634 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 19:04:39,636 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 19:04:39,636 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-15 19:06:24,188 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-15 19:06:27,251 - aiogram.dispatcher - INFO - Start polling
+2024-09-15 19:06:27,621 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 19:06:31,044 - aiogram.event - INFO - Update id=791353818 is handled. Duration 2184 ms by bot id=6817635356
+2024-09-15 19:06:41,474 - aiogram.event - INFO - Update id=791353819 is handled. Duration 454 ms by bot id=6817635356
+2024-09-15 19:06:44,685 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-15 19:06:44,686 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-15 19:06:44,686 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-17 11:11:13,055 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-17 11:11:59,197 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-17 11:12:02,042 - aiogram.dispatcher - INFO - Start polling
+2024-09-17 11:12:02,488 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-17 11:12:02,841 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-17 11:12:02,842 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-17 11:13:22,932 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-17 11:13:25,888 - aiogram.dispatcher - INFO - Start polling
+2024-09-17 11:13:26,199 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-17 11:13:29,900 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-17 11:13:29,901 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-17 11:13:29,901 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-17 11:13:42,778 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-17 11:13:45,816 - aiogram.dispatcher - INFO - Start polling
+2024-09-17 11:13:46,090 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-17 11:13:50,676 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-17 11:13:50,677 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-17 11:13:50,677 - aiogram.dispatcher - INFO - Polling stopped
+2024-09-17 11:17:11,411 - asyncio - DEBUG - Using selector: KqueueSelector
+2024-09-17 11:17:14,498 - aiogram.dispatcher - INFO - Start polling
+2024-09-17 11:17:14,865 - aiogram.dispatcher - INFO - Run polling for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-17 11:17:15,437 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2024-09-17 11:17:15,437 - aiogram.dispatcher - INFO - Polling stopped for bot @tapakahokot_test_2_bot id=6817635356 - 'Test123'
+2024-09-17 11:17:15,438 - aiogram.dispatcher - INFO - Polling stopped

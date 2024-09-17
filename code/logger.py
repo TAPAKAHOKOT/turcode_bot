@@ -1,10 +1,8 @@
 import time
 
-from code.tg import Tg
-
 
 class Logger:
-    tg: Tg = None
+    tg = None
 
     @staticmethod
     def log(log_type: str, *args):

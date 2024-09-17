@@ -1,11 +1,9 @@
 from datetime import datetime, timedelta
 
-from sqlalchemy.orm import Session
-
 from code.models import Payout, PayoutActionEnum
 
 
-def get_stats(settings, stat_date=None):
+async def get_stats(settings, stat_date=None):
     # Определяем сегодняшнюю дату и даты за последние 5 дней
     if stat_date is not None:
         dates = [stat_date.strftime('%d.%m.%Y')]
@@ -14,27 +12,27 @@ def get_stats(settings, stat_date=None):
         dates = [(today - timedelta(days=i)).strftime('%d.%m.%Y') for i in range(7)]
 
     stats = {}
-    with Session(settings.engine) as session, session.begin():
+    async with settings.db_session() as session:
         for date in dates:
-            success_payouts_count = Payout.get_count_by_date_and_action(
+            success_payouts_count = await Payout.get_count_by_date_and_action(
                 session=session,
                 bot_name=settings.bot_name,
                 date_str=date,
                 action=PayoutActionEnum.SUCCESS.code,
             )
-            success_payouts_amount_sum = Payout.get_amount_sum_by_date_and_action(
+            success_payouts_amount_sum = await Payout.get_amount_sum_by_date_and_action(
                 session=session,
                 bot_name=settings.bot_name,
                 date_str=date,
                 action=PayoutActionEnum.SUCCESS.code,
             )
-            fail_payouts_count = Payout.get_count_by_date_and_action(
+            fail_payouts_count = await Payout.get_count_by_date_and_action(
                 session=session,
                 bot_name=settings.bot_name,
                 date_str=date,
                 action=PayoutActionEnum.FAIL.code,
             )
-            fail_payouts_amount_sum = Payout.get_amount_sum_by_date_and_action(
+            fail_payouts_amount_sum = await Payout.get_amount_sum_by_date_and_action(
                 session=session,
                 bot_name=settings.bot_name,
                 date_str=date,

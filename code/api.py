@@ -6,6 +6,7 @@ import time
 import requests as r
 from sqlalchemy.orm import Session
 
+from code.db import DB
 from code.logger import Logger
 from code.models import Payout, PayoutActionEnum
 from code.settings import Settings
@@ -15,24 +16,29 @@ from code.tg import Tg
 class API:
     session: r.Session
     settings: Settings
+    db: DB
     tg: Tg
     logger: Logger
 
-    auth_error_count = 0
-    claimed_payouts_count = None
+    claimed_payouts = set()
+
+    auth_error_count: int = 0
+    claimed_payouts_count: int | None = None
 
     base_url = 'https://api.turcode.app'
     headers = {
         'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
     }
+    auth_cookie: str = None
 
     turcode_login: str
     turcode_password: str
     is_auth: bool = True
 
-    def __init__(self, session: r.Session, settings: Settings, tg: Tg, logger: Logger):
+    def __init__(self, session: r.Session, settings: Settings, db: DB, tg: Tg, logger: Logger):
         self.session = session
         self.settings = settings
+        self.db = db
         self.tg = tg
         self.tg.api = self
         self.logger = logger
@@ -66,12 +72,45 @@ class API:
 
             return None
 
-    def auth(self):
+    async def check_claimed_payouts(self):
+        async with self.settings.db_session() as session:
+            claimed_payouts = self.claimed_payouts.copy()
+            self.claimed_payouts = set()
+            for operation_id in claimed_payouts:
+                payouts = await Payout.get_not_gained_by_operation_id(session, operation_id)
+                if not payouts:
+                    continue
+
+                for payout in payouts:
+                    payout.is_claimed = True
+                    session.add(payout)
+
+                payout = payouts[0]
+                success_msg = (
+                    f'Платеж забран\n'
+                    f'Сумма - 💰{payout.amount}💰\n'
+                    f'Карта - 💸{payout.card}💸'
+                )
+
+                if len(payouts) > 1:
+                    success_msg += '\n\n‼️Кажется, этот платеж уже забирался‼️'
+
+                self.settings.notifications.add_to_all(success_msg)
+            await session.commit()
+
+    async def update_bot_claimed_payouts_count(self):
+        async with self.settings.db_session() as session:
+            claimed_payouts_count = self.claimed_payouts_count
+            if claimed_payouts_count is None:
+                claimed_payouts_count = 0
+            await self.db.cur_bot.set_claimed_payouts_count(session, claimed_payouts_count)
+
+    async def auth(self):
         # Предотвращаем бесконечную авторизацию
         if self.turcode_login is None or self.turcode_password is None:
             return
 
-        self.tg.notify_admins('Авторизовался')
+        await self.tg.notify_admins('Авторизовался')
 
         form_data = {
             'login': self.turcode_login,
@@ -86,29 +125,39 @@ class API:
             )
             auth_cookie = self._extract_auth_cookie(request.headers.get('Set-Cookie'))
             if auth_cookie is not None:
-                self.settings['auth_cookie'] = auth_cookie
-                self.session.cookies.set('auth', self.settings['auth_cookie'])
+                self.auth_cookie = auth_cookie
+
+                async with self.settings.db_session() as session:
+                    await self.db.cur_bot.set_auth_cookie(session, auth_cookie)
+                    await session.commit()
+
+                self.session.cookies.set('auth', auth_cookie)
         except r.exceptions.RequestException as e:
             self.logger.error('Request error:', e)
             return
 
         self.is_auth = True
 
-    def get_payouts(self):
+    async def get_payouts(self):
         if not self.is_auth:
-            self.auth()
+            await self.auth()
 
         if not self.is_auth:
             self.logger.info(f'{self.is_auth=}')
-            self.settings['is_running'] = False
-            self.tg.notify_admins('Меня выкинуло из системы, нужна авторизация\nВыключаю штуку')
-            self.tg.notify_watchers('Меня выкинуло из системы, нужна авторизация\nВыключаю штуку')
+
+            async with self.settings.db_session() as session:
+                await self.db.cur_bot.set_is_running(session, False)
+                await session.commit()
+            await self.db.load_bots()
+
+            await self.tg.notify_admins('Меня выкинуло из системы, нужна авторизация\nВыключаю штуку')
+            await self.tg.notify_watchers('Меня выкинуло из системы, нужна авторизация\nВыключаю штуку')
             return []
 
         form_data = {
             'length': 100,
-            'pfrom': self.settings.get('min_amount', None),
-            'pto': self.settings.get('max_amount', None),
+            'pfrom': self.db.all_active_bots_min_amount,
+            'pto': self.db.all_active_bots_max_amount,
             'fstatus': 'Pending',
             'ftime': 'All',
         }
@@ -121,21 +170,25 @@ class API:
             )
 
             if 'blocked' in request.text:
-                self.settings['is_running'] = False
-                self.tg.notify_admins('Меня блокнуло\nВыключаю штуку')
-                self.tg.notify_watchers('Меня блокнуло\nВыключаю штуку')
+                async with self.settings.db_session() as session:
+                    await self.db.cur_bot.set_is_running(session, False)
+                    await session.commit()
+                await self.db.load_bots()
+
+                await self.tg.notify_admins('Меня блокнуло\nВыключаю штуку')
+                await self.tg.notify_watchers('Меня блокнуло\nВыключаю штуку')
                 return []
 
             auth_cookie = self._extract_auth_cookie(request.headers.get('Set-Cookie'))
             if auth_cookie is not None:
-                self.settings['auth_cookie'] = auth_cookie
-                self.session.cookies.set('auth', self.settings['auth_cookie'])
+                self.auth_cookie = auth_cookie
+                self.session.cookies.set('auth', auth_cookie)
         except r.exceptions.RequestException as e:
             self.logger.error('Request error:', e)
             return []
 
         if request.status_code == 429:
-            self.tg.notify_admins('Код 429')
+            await self.tg.notify_admins('Код 429')
             time.sleep(4)
             return []
 
@@ -147,9 +200,14 @@ class API:
 
             if self.auth_error_count > 5:
                 self.is_auth = False
-                self.settings['is_running'] = False
-                self.tg.notify_admins('Выкинуло\nВыключаю штуку')
-                self.tg.notify_watchers('Выкинуло\nВыключаю штуку')
+
+                async with self.settings.db_session() as session:
+                    await self.db.cur_bot.set_auth_cookie(session, auth_cookie)
+                    await session.commit()
+                await self.db.load_bots()
+
+                await self.tg.notify_admins('Выкинуло\nВыключаю штуку')
+                await self.tg.notify_watchers('Выкинуло\nВыключаю штуку')
 
             return []
 
@@ -158,12 +216,15 @@ class API:
         return request_data['data']
 
     # Забираем платеж
-    def claim_payout(self, payout) -> bool:
+    async def claim_payout(self, payout) -> bool:
         # if not self.is_auth:
         #     self.auth()
 
-        payouts_count_limit = self.settings.get('payouts_limit', 10)
-        if self.claimed_payouts_count >= payouts_count_limit:
+        bot_to_claim = await self.db.get_bot_by_amount(self.str_to_int(payout.get('amount', 0)))
+        if bot_to_claim is None:
+            return False
+
+        if bot_to_claim.claimed_payouts_count >= bot_to_claim.claimed_payouts_limit:
             return False
 
         # # Чекаем забирался ли платеж другим ботом
@@ -175,23 +236,29 @@ class API:
         #     if all_bots_operation_payouts_count > 0:
         #         return False
 
-        self.settings.notifications['admins'].append(f'Пробую забрать платеж ({time.time()})')
+        # self.settings.notifications.admins.append(f'Пробую забрать платеж ({time.time()})')
         form_data = {
             'id': payout['id'],
             'mode': 'claim',
         }
 
+        if bot_to_claim.id != self.db.cur_bot.id:
+            session = r.Session()
+            session.cookies.set('auth', bot_to_claim.auth_cookie)
+        else:
+            session = self.session
+
         try:
-            request = self.session.post(
+            request = session.post(
                 f'{self.base_url}/prtProcessPayoutsOwnership.php',
                 data=form_data,
                 headers=self.headers,
             )
-            self.settings.notifications['admins'].append(
-                f'Ответ системы ({time.time()})\n\n'
-                f'status - {request.status_code}\n'
-                f'text - {request.text}'
-            )
+            # self.settings.notifications.admins.append(
+            #     f'Ответ системы ({time.time()})\n\n'
+            #     f'status - {request.status_code}\n'
+            #     f'text - {request.text}'
+            # )
         except r.exceptions.RequestException as e:
             self.logger.error('Request error:', e)
             return False
@@ -214,30 +281,30 @@ class API:
                 operation_id=payout.get('operation_id', ''),
                 user_id=payout.get('user_id', ''),
                 amount=self.str_to_int(payout.get('amount', 0)),
-                bot_name=self.settings.bot_name,
+                bot_name=bot_to_claim.bot_name,
                 # bank_name=erow(payout.get('bank', None)),
                 card=erow(payout.get('card', None)),
                 phone=erow(payout.get('phone', None)),
                 payout_id=erow(payout.get('id', None)),
             )
             if request_data['status']:
-                success_msg = (
-                    f'Платеж забран\n'
-                    f'Сумма - 💰{payout['amount']}💰\n'
-                    f'Карта - 💸{payout['card']}💸'
-                )
+                # success_msg = (
+                #     f'Платеж забран\n'
+                #     f'Сумма - 💰{payout['amount']}💰\n'
+                #     f'Карта - 💸{payout['card']}💸'
+                # )
 
                 # Чекаем забирал ли текущий бот этот платеж
-                cur_bot_operation_payouts_count = Payout.get_count_by_operation_id_and_bot_name(
-                    session=session,
-                    bot_name=self.settings.bot_name,
-                    operation_id=payout['operation_id'],
-                )
-                if cur_bot_operation_payouts_count > 0:
-                    success_msg += '\n\n‼️Кажется, этот платеж уже забирался‼️'
-
-                self.settings.notifications['admins'].append(success_msg)
-                self.settings.notifications['only_taken'].append(success_msg)
+                # cur_bot_operation_payouts_count = Payout.get_count_by_operation_id_and_bot_name(
+                #     session=session,
+                #     bot_name=self.settings.bot_name,
+                #     operation_id=payout['operation_id'],
+                # )
+                # if cur_bot_operation_payouts_count > 0:
+                #     success_msg += '\n\n‼️Кажется, этот платеж уже забирался‼️'
+                #
+                # self.settings.notifications.admins.append(success_msg)
+                # self.settings.notifications.watchers.append(success_msg)
 
                 payout_row.action = PayoutActionEnum.SUCCESS.code
                 session.add(payout_row)
@@ -283,14 +350,16 @@ class API:
         return result
 
     # Получаем обработанные платежи
-    def load_payouts(self):
-        payouts_count_limit = self.settings.get('payouts_limit', 10)
+    async def load_payouts(self):
+        payouts_count_limit = self.db.cur_bot.claimed_payouts_limit
         if self.claimed_payouts_count is None or self.claimed_payouts_count >= payouts_count_limit:
             self.claimed_payouts_count = 0
-            self.tg.notify_admins('Обновляю claimed_payouts_count')
-            all_payouts = self.get_payouts()
+            await self.tg.notify_admins('Обновляю claimed_payouts_count')
+            all_payouts = await self.get_payouts()
             for row in all_payouts:
-                self.claimed_payouts_count += 0 if not row[3] else 1
+                if row[3]:
+                    self.claimed_payouts.add(row[16])
+                    self.claimed_payouts_count += 1
 
             time.sleep(2)
 
@@ -300,12 +369,13 @@ class API:
         _time_ending_notified_payouts = []
         payouts = []
         self.claimed_payouts_count = 0
-        for row in self.get_payouts():
+        for row in await self.get_payouts():
             claim_btn = row[2]
             payout_id = claim_btn.split('data-id=')[1].split("'")[1]
 
             is_able = not row[3]
             if not is_able:
+                self.claimed_payouts.add(row[16])
                 self.claimed_payouts_count += 1
                 end_time = row[4].split('data-end-time=')[1].split("'")[1]
                 try:
@@ -327,8 +397,7 @@ class API:
                             remind_msg_text = (f'❗️У платежа заканчивается время для оплаты\n'
                                                f'{_msg_text}\n'
                                                f'Operation ID: {row[16]} Сумма: {row[6]}')
-                            self.settings.notifications['admins'].append(remind_msg_text)
-                            self.settings.notifications['only_taken'].append(remind_msg_text)
+                            self.settings.notifications.add_to_all(remind_msg_text)
 
                 continue
             card = row[9]
@@ -367,13 +436,13 @@ class API:
                 continue
 
             self.logger.info(f'Payout found: {payout}')
-            self.settings.notifications['admins'].append(f'Найден платеж ({time.time()})\n\n{self.dict_to_str(payout)}')
+            # self.settings.notifications.admins.append(f'Найден платеж ({time.time()})\n\n{self.dict_to_str(payout)}')
             payouts.append(payout)
 
         self.time_ending_notified_payouts = _time_ending_notified_payouts
         return payouts
 
-    def get_stats(self) -> list:
+    async def get_stats(self) -> list:
         webapp_list = os.getenv('WEBAPP_LIST', default=None)
         if webapp_list is None:
             return []

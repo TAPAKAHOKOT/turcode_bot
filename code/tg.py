@@ -1,12 +1,19 @@
 import os
+from dataclasses import dataclass
 from datetime import datetime
-from random import choices
 
-import requests as r
+from aiogram import Bot as TgBot
+from aiogram import Dispatcher, types, Router, F
+from aiogram.filters import Command
+from aiogram.filters.callback_data import CallbackData
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from dotenv import load_dotenv
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
-from code.models import Payout, PayoutActionEnum
+from code.db import DB
+from code.models import Payout, PayoutActionEnum, User, Bot
+from code.settings import Settings
 from code.stats import get_stats
 
 load_dotenv()
@@ -17,25 +24,90 @@ admins = list(map(int, os.getenv('ADMINS').split(',')))
 
 bot_token = os.getenv('BOT_TOKEN')
 
-in_work_phrases = ["Явись-я работаю-вызвали!", "Всё ещё тут",
-                   "Работаю, не валяясь", "Не сплю, шишки не беру",
-                   "Продолжаю мучиться", "Трудится, как пчёлка",
-                   "Всё по расписанию", "Пашу, как осёл", "На лошади работаю",
-                   "Не останавливаюсь", "Делаю всё и даже больше",
-                   "Ходить еще не устал", "Ноги еще целые", "Мозги на месте",
-                   "Клаву грызу", "Делаю, что могу", "Ещё в деле",
-                   "Твердо на земле", "Горю желанием", "Не сдаюсь",
-                   "Работаю до отказа", "Только начал", "В процессе",
-                   "Не жалуюсь", "Продолжаю мучиться", "Жив-здоров",
-                   "Не сплю, не вяну", "На плаву", "Сияю здесь", "Тактичен", ]
+
+@dataclass
+class Routers:
+    base: Router
+    admin: Router
+
+
+class UserCallback(CallbackData, prefix='user'):
+    bot_id: int
+    user_id: int
+    page: int
+
+
+class BotCallback(CallbackData, prefix='bot'):
+    bot_id: int
+    page: int
 
 
 class Tg:
     api: None
+    routers: Routers
 
-    def __init__(self, session, settings):
+    def __init__(self, session: Session, settings: Settings, db: DB):
         self.session = session
         self.settings = settings
+        self.db = db
+
+    def _is_user_exists(self, chat: types.Chat) -> bool:
+        if not (self.db and self.db.cur_bot):
+            return False
+
+        for user in self.db.cur_bot.users:
+            if user.chat_id == str(chat.id):
+                return True
+        return False
+
+    def _is_admin(self, chat: types.Chat) -> bool:
+        if not (self.db and self.db.cur_bot):
+            return False
+
+        for user in self.db.cur_bot.users:
+            if user.chat_id == str(chat.id) and user.is_admin:
+                return True
+        return False
+
+    def setup(self):
+        self.settings.bot = TgBot(token=bot_token)
+        self.settings.dp = Dispatcher()
+
+        self.routers = Routers(
+            base=Router(),
+            admin=Router(),
+        )
+
+        self.routers.base.message.filter(F.chat.func(self._is_user_exists))
+        self.routers.base.callback_query.filter(F.from_user.id.in_(
+            [int(u.chat_id) for u in self.db.cur_bot.users]
+        ))
+
+        self.routers.admin.message.filter(F.chat.func(self._is_admin))
+        self.routers.admin.callback_query.filter(F.from_user.id.in_(
+            [int(u.chat_id) for u in self.db.cur_bot.users if u.is_admin]
+        ))
+
+        self.routers.base.include_router(self.routers.admin)
+        self.settings.dp.include_router(self.routers.base)
+
+        self.routers.base.message.register(self._help_command, Command('help'))
+        self.routers.base.message.register(self._run_command, Command('run'))
+        self.routers.base.message.register(self._stop_command, Command('stop'))
+        self.routers.base.message.register(self._status_command, Command('status'))
+        self.routers.base.message.register(self._stats_command, Command('stats'))
+
+        self.routers.admin.message.register(self._webstats_command, Command('webstats'))
+        self.routers.admin.message.register(self._payout_command, Command('payout'))
+        self.routers.admin.message.register(self._set_min_amount_command, Command('set_min_amount'))
+        self.routers.admin.message.register(self._set_max_amount_command, Command('set_max_amount'))
+        self.routers.admin.message.register(self._set_payouts_limit_command, Command('set_payouts_limit'))
+        self.routers.admin.message.register(self._add_user_command, Command('add_user'))
+
+        self.routers.admin.message.register(self._list_bots, Command('bots_users'))
+        self.routers.admin.callback_query.register(self._show_users_in_bot, BotCallback.filter())
+        self.routers.admin.callback_query.register(self._back_to_list_bots, F.data == 'to_list_bots')
+        self.routers.admin.callback_query.register(self._toggle_user_in_bot, UserCallback.filter())
 
     def format_number(self, num):
         if num is None:
@@ -44,88 +116,36 @@ class Tg:
         num = round(num, 2)
         return '{:,}'.format(num).replace(',', ' ')
 
-    def send_msg(self, chat_id: int, text: str):
-        url = f"https://api.telegram.org/bot{bot_token}/sendMessage?chat_id={chat_id}&text={text}&reply_markup=%7B%22remove_keyboard%22%3A%20true%7D"
-        response = r.get(url)
+    def split_list(self, lst, step: int = 2):
+        return [lst[i:i + step] for i in range(0, len(lst), step)]
 
-        if response.status_code != 200:
-            print(response.text)
+    async def send_msg(self, chat_id: int, text: str):
+        await self.settings.bot.send_message(chat_id, text)
 
-    def notify_admins(self, *args):
+    async def notify_admins(self, *args):
         text = ' '.join([str(s) for s in args])
         for admin in admins:
-            self.send_msg(admin, text)
+            await self.send_msg(admin, text)
 
-    def notify_watchers(self, *args):
+    async def notify_watchers(self, *args):
         text = ' '.join([str(s) for s in args])
         for watcher in watchers:
-            self.send_msg(watcher, text)
+            await self.send_msg(watcher, text)
 
-    def notify_bulk_admins(self, notifications):
+    async def notify_bulk_admins(self, notifications):
         for notification in notifications:
             if isinstance(notification, str):
                 notification = [notification]
-            self.notify_admins(*notification)
+            await self.notify_admins(*notification)
 
-    def notify_bulk_watchers(self, notifications):
+    async def notify_bulk_watchers(self, notifications):
         for notification in notifications:
             if isinstance(notification, str):
                 notification = [notification]
-            self.notify_watchers(*notification)
+            await self.notify_watchers(*notification)
 
-    def get_updates(self):
-        update_offset = self.settings.get('update_offset', None)
-        url = f"https://api.telegram.org/bot{bot_token}/getUpdates"
-        if update_offset is not None:
-            url += f'?offset={update_offset}'
-
-        try:
-            updates = r.get(url)
-        except:
-            return
-
-        if updates.status_code == 200:
-            updates = updates.json()
-            for msg in updates['result']:
-                if 'message' not in msg or 'text' not in msg['message']:
-                    continue
-
-                chat_id = msg['message']['from']['id']
-                if chat_id not in watchers and chat_id not in admins:
-                    continue
-
-                text = msg['message']['text']
-                if text.startswith('/help'):
-                    self._help_command(chat_id)
-                elif text.startswith('/run'):
-                    self._run_command(chat_id)
-                elif text.startswith('/stop'):
-                    self._stop_command(chat_id)
-                elif text.startswith('/status'):
-                    self._status_command(chat_id)
-                elif text.startswith('/webstats'):
-                    self._webstats_command(chat_id)
-                elif text.startswith('/stats'):
-                    self._stats_command(chat_id, text)
-                elif text.startswith('/payout'):
-                    self._payout_command(chat_id, text)
-                elif text.startswith('/set_min_amount'):
-                    self._set_min_amount_command(chat_id, text)
-                elif text.startswith('/set_max_amount'):
-                    self._set_max_amount_command(chat_id, text)
-                elif text.startswith('/set_payouts_limit'):
-                    self._set_payouts_limit_command(chat_id, text)
-                elif text.startswith('/auth'):
-                    self._auth_command(chat_id, text)
-                else:
-                    self.send_msg(chat_id, choices(in_work_phrases)[0])
-
-                update_offset = msg['update_id'] + 1
-                self.settings['update_offset'] = update_offset
-
-    def _help_command(self, chat_id: int | str):
-        self.send_msg(
-            chat_id,
+    async def _help_command(self, message: types.Message):
+        await message.answer(
             'Хелпанем немножечко :)\n\n'
             '/help - список команд\n\n'
             + f'{'Штука':=^20}' + '\n' +
@@ -143,31 +163,37 @@ class Tg:
             '<number> - любое целое число, можно использовать пробел как разделитель\n'
             '/set_payouts_limit <number> - установить лимит кол-ва платежей, '
             '<number> - любое целое число, можно использовать пробел как разделитель\n'
-            '/auth <text> - установить куки авторизации'
+            '/auth <text> - установить куки авторизации',
         )
 
-    def _run_command(self, chat_id: int | str):
-        self.settings['is_running'] = True
-        self.send_msg(chat_id, 'Запустил штуку')
+    async def _run_command(self, message: types.Message):
+        async with self.settings.db_session() as session:
+            await self.db.cur_bot.set_is_running(session, True)
+            await session.commit()
 
-    def _stop_command(self, chat_id: int | str):
-        self.settings['is_running'] = False
-        self.send_msg(chat_id, 'Остановил штуку')
+        await message.answer('Запустил штуку')
 
-    def _status_command(self, chat_id: int | str):
-        self.send_msg(
-            chat_id,
-            f'Штука запущена: {'да' if self.settings['is_running'] else 'нет'}\n'
-            f'Мин. сумма резервирования: {self.format_number(self.settings.get('min_amount', 0))}\n'
-            f'Макс. сумма резервирования: {self.format_number(self.settings.get('max_amount', 0))}\n'
-            f'Лимит кол-ва платежей: {self.format_number(self.settings['payouts_limit'])}'
+    async def _stop_command(self, message: types.Message):
+        async with self.settings.db_session() as session:
+            await self.db.cur_bot.set_is_running(session, False)
+            await session.commit()
+
+        await message.answer('Остановил штуку')
+
+    async def _status_command(self, message: types.Message):
+        await message.answer(
+            f'Штука запущена: {'да' if self.db.cur_bot.is_running else 'нет'}\n'
+            f'Мин. сумма резервирования: {self.format_number(self.db.cur_bot.min_amount)}\n'
+            f'Макс. сумма резервирования: {self.format_number(self.db.cur_bot.min_amount)}\n'
+            f'Лимит кол-ва платежей: {self.format_number(self.db.cur_bot.claimed_payouts_limit)}'
         )
 
-    def _webstats_command(self, chat_id: int | str):
+    async def _webstats_command(self, message: types.Message):
         if not self.api:
-            self.send_msg(chat_id, 'Апи не подключено')
+            await message.answer('Апи не подключено')
             return
 
+        # TODO: переписать без использования апи
         for k, profiles in enumerate(self.api.get_stats()):
             stats_msg = ''
             k_msg = f' Бот {k + 1} '
@@ -184,22 +210,21 @@ class Tg:
                                       f'Баланс: {self.format_number(stat['balance'])}\n'
                                       f'Сумма платежей за 24 часа: {self.format_number(stat['payouts_sum_for_24h'])}\n'
                                       f'Кол-во платежей за 24 часа: {stat['payouts_count_for_24h']}\n\n\n')
-            self.send_msg(chat_id, stats_msg)
+            await message.answer(stats_msg)
 
-    def _stats_command(self, chat_id: int | str, text: str):
-        stats_date = text.replace('/stats', '').strip() or None
+    async def _stats_command(self, message: types.Message):
+        stats_date = message.text.replace('/stats', '').strip() or None
 
         if stats_date:
             try:
                 stats_date = datetime.strptime(stats_date, '%d.%m.%Y').date()
             except ValueError:
-                self.send_msg(chat_id, 'Неверный формат даты')
+                await message.answer('Неверный формат даты')
                 return
 
-        stats_dict = get_stats(self.settings, stats_date)
+        stats_dict = await get_stats(self.settings, stats_date)
         for date, metrics in stats_dict.items():
-            self.send_msg(
-                chat_id,
+            await message.answer(
                 f"Дата: {date}\n\n" + "-" * 30 +
                 f"\n\nПлатеж забран успешно ✅\n\n"
                 f"Сумма: {self.format_number(metrics['success_payouts_amount_sum'])}\n"
@@ -212,103 +237,184 @@ class Tg:
                 f"Кол-во: {self.format_number(metrics['fail_payouts_count'])}\n\n"
             )
         if not stats_dict:
-            self.send_msg(chat_id, 'Статистики нет')
+            await message.answer('Статистики нет')
 
-    def _payout_command(self, chat_id: int | str, text: str):
-        search_value = text.replace('/payout', '').strip()
+    async def _payout_command(self, message: types.Message):
+        search_value = message.text.replace('/payout', '').strip()
 
         if not search_value:
-            self.send_msg(
-                chat_id,
+            await message.answer(
                 'Неверный формат ввода,\n'
                 'пример: /payout W153944573'
             )
 
-        search_funs = [
-            Payout.get_all_by_operation_id,
-            Payout.get_all_by_card,
-            Payout.get_all_by_phone,
-        ]
+        async with self.settings.db_session() as session:
+            payouts = await Payout.search_payouts(session, search_value)
 
-        with Session(self.settings.engine) as session, session.begin():
-            for search_fun in search_funs:
-                payouts = search_fun(session, search_value)
+            if payouts:
+                for payout in payouts:
+                    action = (PayoutActionEnum.SUCCESS.text
+                              if payout.action == PayoutActionEnum.SUCCESS.code else
+                              PayoutActionEnum.FAIL.text)
 
-                if payouts:
-                    for payout in payouts:
-                        action = (PayoutActionEnum.SUCCESS.text
-                                  if payout.action == PayoutActionEnum.SUCCESS.code else
-                                  PayoutActionEnum.FAIL.text)
+                    await message.answer(
+                        f'Событие: {action}\n'
+                        f'Дата события: {payout.created_at.strftime("%d.%m.%Y %H:%M:%S")}\n'
+                        f'Бот: {payout.bot_name}\n'
+                        f'Operation id: {payout.operation_id}\n'
+                        f'Сумма: {self.format_number(payout.amount)}\n'
+                        f'Банк: {payout.bank_name}\n'
+                        f'Карта: {payout.card}\n'
+                        f'Телефон: {payout.phone}\n'
+                    )
+                return
 
-                        self.send_msg(
-                            chat_id,
-                            f'Событие: {action}\n'
-                            f'Дата события: {payout.created_at.strftime("%d.%m.%Y %H:%M:%S")}\n'
-                            f'Бот: {payout.bot_name}\n'
-                            f'Operation id: {payout.operation_id}\n'
-                            f'Сумма: {self.format_number(payout.amount)}\n'
-                            f'Банк: {payout.bank_name}\n'
-                            f'Карта: {payout.card}\n'
-                            f'Телефон: {payout.phone}\n'
-                        )
-                    return
-
-        self.send_msg(
-            chat_id,
+        await message.answer(
             'Платеж не найден :('
         )
 
-    def _set_min_amount_command(self, chat_id: int | str, text: str):
-        new_min_amount = text.replace('/set_min_amount ', '')
+    async def _set_min_amount_command(self, message: types.Message):
+        new_min_amount = message.text.replace('/set_min_amount ', '')
         try:
             new_min_amount = int(new_min_amount.replace(' ', ''))
         except ValueError:
-            self.send_msg(
-                chat_id,
+            await message.answer(
                 'Неверный формат ввода, пример: /set_min_amount 50 000'
             )
         else:
-            self.settings['min_amount'] = new_min_amount
-            self.send_msg(
-                chat_id,
-                f'Мин. сумма резервирования: {self.format_number(self.settings['min_amount'])}'
+            async with self.settings.db_session() as session:
+                await self.db.cur_bot.set_min_amount(session, new_min_amount)
+                await session.commit()
+
+            await message.answer(
+                f'Мин. сумма резервирования: {self.format_number(new_min_amount)}'
             )
 
-    def _set_max_amount_command(self, chat_id: int | str, text: str):
-        new_max_amount = text.replace('/set_max_amount ', '')
+    async def _set_max_amount_command(self, message: types.Message):
+        new_max_amount = message.text.replace('/set_max_amount ', '')
         try:
             new_max_amount = int(new_max_amount.replace(' ', ''))
         except ValueError:
-            self.send_msg(chat_id,
-                          'Неверный формат ввода, пример: /set_max_amount 80 000')
+            await message.answer('Неверный формат ввода, пример: /set_max_amount 80 000')
         else:
-            self.settings['max_amount'] = new_max_amount
-            self.send_msg(
-                chat_id,
-                f'Макс. сумма резервирования: {self.format_number(self.settings['max_amount'])}'
-            )
+            async with self.settings.db_session() as session:
+                await self.db.cur_bot.set_max_amount(session, new_max_amount)
+                await session.commit()
 
-    def _set_payouts_limit_command(self, chat_id: int | str, text: str):
-        new_payouts_limits = text.replace('/set_payouts_limit ', '')
+            await message.answer(f'Макс. сумма резервирования: {self.format_number(new_max_amount)}')
+
+    async def _set_payouts_limit_command(self, message: types.Message):
+        new_payouts_limits = message.text.replace('/set_payouts_limit ', '')
         try:
             new_payouts_limits = int(
                 new_payouts_limits.replace(' ', ''))
         except ValueError:
-            self.send_msg(chat_id,
-                          'Неверный формат ввода, пример: /set_payouts_limit 10')
+            await message.answer('Неверный формат ввода, пример: /set_payouts_limit 10')
         else:
-            self.settings['payouts_limit'] = new_payouts_limits
-            self.send_msg(
-                chat_id,
-                f'Лимит кол-ва платежей: {self.format_number(self.settings['payouts_limit'])}'
-            )
+            async with self.settings.db_session() as session:
+                await self.db.cur_bot.set_claimed_payouts_limit(session, new_payouts_limits)
+                await session.commit()
 
-    def _auth_command(self, chat_id: int | str, text: str):
-        auth_cookie = text.replace('/auth', '').strip().replace(
-            'auth=', '').encode('latin-1', 'ignore').decode('utf-8', 'ignore')
-        self.api.is_auth = True
-        self.settings['auth_cookie'] = auth_cookie
-        self.session.cookies.set('auth', self.settings['auth_cookie'])
-        self.settings.logger.info(f'{self.api.is_auth=}')
+            await message.answer(f'Лимит кол-ва платежей: {self.format_number(new_payouts_limits)}')
 
-        self.send_msg(chat_id, f'Обновил куки: {auth_cookie}')
+    async def _add_user_command(self, message: types.Message):
+        data = message.text.replace('/add_user', '').strip().split()
+
+        if len(data) != 2:
+            await message.answer('Неверный формат, пример: /add_user Петя 123321')
+
+        name, chat_id = data
+        async with self.settings.db_session() as session:
+            session.add(User(name=name, chat_id=chat_id))
+
+            try:
+                await session.commit()
+            except IntegrityError:
+                await session.rollback()
+                await message.answer('Пользователь с таким chat_id уже добавлен')
+                return
+
+        await message.answer('Пользователь успешно добавлен')
+        await self.db.load_users()
+
+    async def _list_bots(self, message: types.Message, is_edit: bool = False):
+        bots_btns = []
+        for bot in self.db.bots:
+            bots_btns.append(InlineKeyboardButton(
+                text=bot.bot_name,
+                callback_data=BotCallback(bot_id=bot.id, page=1).pack()
+            ))
+
+        markup = InlineKeyboardMarkup(inline_keyboard=self.split_list(bots_btns))
+
+        method = message.edit_text if is_edit else message.answer
+        await method("Список ботов", reply_markup=markup)
+
+    async def _show_users_in_bot(self, callback_query: types.CallbackQuery, callback_data: BotCallback = None,
+                                 bot_id: int = None, page: int = None):
+        page_size = 10
+
+        if bot_id is None:
+            bot_id = callback_data.bot_id
+        if page is None:
+            page = callback_data.page
+
+        async with self.settings.db_session() as session:
+            all_users = await User.get_all(session)
+            bot_users = await User.get_by_bot_id(session, bot_id)
+
+        has_next = len(all_users) >= page * page_size
+        cur_page_users = all_users[(page - 1) * page_size: page * page_size]
+
+        users_btns = []
+        for user in cur_page_users:
+            is_added_to_bot = user in bot_users
+            users_btns.append(InlineKeyboardButton(
+                text=f'{'🟩' if is_added_to_bot else '🟥'} {user.name}',
+                callback_data=UserCallback(bot_id=bot_id, user_id=user.id, page=page).pack()
+            ))
+
+        keyboard = self.split_list(users_btns)
+
+        # Add pagination buttons
+        pagination_row = []
+        if page > 1:
+            pagination_row.append(InlineKeyboardButton(
+                text="⬅️",
+                callback_data=BotCallback(bot_id=bot_id, page=page - 1).pack()
+            ))
+        if has_next:
+            pagination_row.append(InlineKeyboardButton(
+                text="➡️",
+                callback_data=BotCallback(bot_id=bot_id, page=page + 1).pack()
+            ))
+
+        keyboard.append(pagination_row)
+        keyboard.append([InlineKeyboardButton(text="Назад", callback_data="to_list_bots")])
+
+        markup = InlineKeyboardMarkup(inline_keyboard=keyboard)
+        return await callback_query.message.edit_text(f"Список пользователей бота", reply_markup=markup)
+
+    async def _back_to_list_bots(self, callback_query: types.CallbackQuery):
+        await self._list_bots(callback_query.message, True)
+
+    async def _toggle_user_in_bot(self, callback_query: types.CallbackQuery, callback_data: UserCallback):
+        bot_id = callback_data.bot_id
+        user_id = callback_data.user_id
+        page = callback_data.page
+
+        async with self.settings.db_session() as session:
+            bot = await Bot.get_by_id(session, bot_id)
+            user = await User.get_by_id(session, user_id)
+
+            if user in bot.users:
+                await bot.remove_user(session, user)
+            else:
+                await bot.add_user(session, user)
+
+            await session.commit()
+
+        await self.db.load_bots()
+        await self.db.load_users()
+
+        return await self._show_users_in_bot(callback_query, bot_id=bot_id, page=page)
