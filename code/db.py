@@ -34,6 +34,8 @@ class DB:
             self.bots = await Bot.get_active(session=session)
             self.cur_bot = await self._find_cur_bot()
 
+        await self._update_bots_info()
+
     async def get_bot_by_amount(self, amount: int) -> Bot | None:
         for bot in self.bots:
             if bot.is_running and bot.min_amount <= amount <= bot.max_amount:

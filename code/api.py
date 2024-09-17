@@ -64,11 +64,11 @@ class API:
             num = 0
         return num
 
-    def _extract_auth_cookie(self, cookies):
+    async def _extract_auth_cookie(self, cookies):
         try:
             return cookies.split('auth=')[1].split(';')[0]
         except:
-            self.tg.notify_admins(f'Что-то не так с куками... {cookies}')
+            await self.tg.notify_admins(f'Что-то не так с куками... {cookies}')
 
             return None
 
@@ -123,7 +123,7 @@ class API:
                 data=form_data,
                 headers=self.headers,
             )
-            auth_cookie = self._extract_auth_cookie(request.headers.get('Set-Cookie'))
+            auth_cookie = await self._extract_auth_cookie(request.headers.get('Set-Cookie'))
             if auth_cookie is not None:
                 self.auth_cookie = auth_cookie
 
@@ -179,7 +179,7 @@ class API:
                 await self.tg.notify_watchers('Меня блокнуло\nВыключаю штуку')
                 return []
 
-            auth_cookie = self._extract_auth_cookie(request.headers.get('Set-Cookie'))
+            auth_cookie = await self._extract_auth_cookie(request.headers.get('Set-Cookie'))
             if auth_cookie is not None:
                 self.auth_cookie = auth_cookie
                 self.session.cookies.set('auth', auth_cookie)
@@ -351,6 +351,7 @@ class API:
 
     # Получаем обработанные платежи
     async def load_payouts(self):
+        print(time.time(), 'load_payouts')
         payouts_count_limit = self.db.cur_bot.claimed_payouts_limit
         if self.claimed_payouts_count is None or self.claimed_payouts_count >= payouts_count_limit:
             self.claimed_payouts_count = 0

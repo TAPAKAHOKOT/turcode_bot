@@ -27,12 +27,15 @@ class Runner:
 
     async def fetch_turcode_api(self):
         while True:
+            print('fetch_turcode_api', self.db.is_any_bot_active)
             if not self.db.is_any_bot_active:
                 await asyncio.sleep(10)
                 continue
 
             for payout in await self.api.load_payouts():
                 await self.api.claim_payout(payout)
+
+            await asyncio.sleep(0)
 
     async def _extra_update_fast(self):
         await self.db.load_bots()
@@ -49,6 +52,7 @@ class Runner:
 
     async def extra_update(self):
         while True:
+            print('extra_update', self.db.is_any_bot_active)
             if self.db.is_any_bot_active:
                 await self.db.load_bots()
 
@@ -63,12 +67,14 @@ class Runner:
                 await asyncio.sleep(5)
                 continue
 
+            await asyncio.sleep(0)
+
     async def start(self):
         # Run both tasks in parallel
         task1 = asyncio.Task(self.fetch_turcode_api())
         task2 = asyncio.Task(self.extra_update())
 
-        polling_task = asyncio.Task(self.settings.dp.start_polling(self.settings.bot))
+        polling_task = asyncio.Task(self.settings.dp.start_polling(self.settings.bot, handle_signals=False))
 
         self.tasks = [task1, task2, polling_task]
 

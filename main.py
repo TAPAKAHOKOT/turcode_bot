@@ -13,41 +13,16 @@ from code.settings import Settings
 from code.tg import Tg
 
 
+def handle_sigint():
+    print("Received SIGINT, shutting down...")
+    for task in asyncio.all_tasks():
+        task.cancel()
+
+
 async def main():
     sys.stdout.reconfigure(encoding='utf-8')
     logger = Logger()
     logger.info('Starting app')
-
-    async def cancel_tasks():
-        if runner.tasks:
-            logger.info(f'Cancelling {len(runner.tasks)} tasks')
-            tasks = [task.cancel() for task in runner.tasks]
-            await asyncio.gather(*tasks, return_exceptions=True)
-            logger.info('All tasks cancelled')
-
-    # Настраиваем сигналы закрытия программы
-    def onexit(*args, **kwargs):
-        try:
-            settings.save()
-            logger.info(f'Program stopped')
-
-            if runner.tasks:
-                logger.info(f'{len(runner.tasks)} tasks found, cancelling...')
-                loop = asyncio.get_event_loop()
-                loop.run_until_complete(cancel_tasks())
-
-        except Exception as e:
-            logger.error(f'Error during shutdown: {e}')
-
-        finally:
-            logger.info('Exiting program...')
-            sys.exit(0)
-
-    loop = asyncio.get_running_loop()
-
-    # Используем loop.add_signal_handler для регистрации сигналов
-    loop.add_signal_handler(signal.SIGINT, onexit)
-    loop.add_signal_handler(signal.SIGTERM, onexit)
 
     # Загрузка настроек
     settings = Settings(os.getenv('BOT_NAME', 'unknown'), logger)
@@ -72,8 +47,17 @@ async def main():
     runner = Runner(settings, db, api, tg)
     tg.setup()
 
-    asyncio.run(await runner.start())
+    await runner.start()
 
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    loop = asyncio.get_event_loop()
+    loop.add_signal_handler(signal.SIGINT, handle_sigint)
+    loop.add_signal_handler(signal.SIGTERM, handle_sigint)
+
+    try:
+        loop.run_until_complete(main())
+    except asyncio.CancelledError:
+        print("All tasks have been cancelled")
+    finally:
+        loop.close()
