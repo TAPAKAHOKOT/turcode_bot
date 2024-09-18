@@ -18,12 +18,6 @@ from code.stats import get_stats
 
 load_dotenv()
 
-# TG
-watchers = list(map(int, os.getenv('WATCHERS').split(',')))
-admins = list(map(int, os.getenv('ADMINS').split(',')))
-
-bot_token = os.getenv('BOT_TOKEN')
-
 
 @dataclass
 class Routers:
@@ -70,7 +64,7 @@ class Tg:
         return False
 
     def setup(self):
-        self.settings.bot = TgBot(token=bot_token)
+        self.settings.bot = TgBot(token=self.db.cur_bot.tg_bot_token)
         self.settings.dp = Dispatcher()
 
         self.routers = Routers(
@@ -97,7 +91,7 @@ class Tg:
         self.routers.base.message.register(self._status_command, Command('status'))
         self.routers.base.message.register(self._stats_command, Command('stats'))
 
-        self.routers.admin.message.register(self._webstats_command, Command('webstats'))
+        # self.routers.admin.message.register(self._webstats_command, Command('webstats'))
         self.routers.admin.message.register(self._payout_command, Command('payout'))
         self.routers.admin.message.register(self._set_min_amount_command, Command('set_min_amount'))
         self.routers.admin.message.register(self._set_max_amount_command, Command('set_max_amount'))
@@ -123,14 +117,23 @@ class Tg:
         await self.settings.bot.send_message(chat_id, text)
 
     async def notify_admins(self, *args):
+        if not (self.db and self.db.cur_bot):
+            return
+
         text = ' '.join([str(s) for s in args])
-        for admin in admins:
-            await self.send_msg(admin, text)
+        for admin in self.db.cur_bot.users:
+            if not admin.is_admin:
+                continue
+
+            await self.send_msg(admin.chat_id, text)
 
     async def notify_watchers(self, *args):
+        if not (self.db and self.db.cur_bot):
+            return
+
         text = ' '.join([str(s) for s in args])
-        for watcher in watchers:
-            await self.send_msg(watcher, text)
+        for watcher in self.db.cur_bot.users:
+            await self.send_msg(watcher.chat_id, text)
 
     async def notify_bulk_admins(self, notifications):
         for notification in notifications:
@@ -162,8 +165,7 @@ class Tg:
             '/set_max_amount <number> - установить максимальную сумму резервирования платежа, '
             '<number> - любое целое число, можно использовать пробел как разделитель\n'
             '/set_payouts_limit <number> - установить лимит кол-ва платежей, '
-            '<number> - любое целое число, можно использовать пробел как разделитель\n'
-            '/auth <text> - установить куки авторизации',
+            '<number> - любое целое число, можно использовать пробел как разделитель\n',
         )
 
     async def _run_command(self, message: types.Message):

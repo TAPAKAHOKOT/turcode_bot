@@ -30,10 +30,7 @@ class API:
         'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
     }
     auth_cookie: str = None
-
-    turcode_login: str
-    turcode_password: str
-    is_auth: bool = True
+    is_auth: bool = False
 
     def __init__(self, session: r.Session, settings: Settings, db: DB, tg: Tg, logger: Logger):
         self.session = session
@@ -43,8 +40,8 @@ class API:
         self.tg.api = self
         self.logger = logger
 
-        self.turcode_login = os.getenv('TURCODE_LOGIN', None)
-        self.turcode_password = os.getenv('TURCODE_PASSWORD', None)
+        if self.db.cur_bot.auth_cookie:
+            self.is_auth = True
 
         logger.info(f'<{settings.bot_name}> API initialized')
 
@@ -107,14 +104,14 @@ class API:
 
     async def auth(self):
         # Предотвращаем бесконечную авторизацию
-        if self.turcode_login is None or self.turcode_password is None:
+        if self.db.cur_bot.turcode_login is None or self.db.cur_bot.turcode_pass is None:
             return
 
         await self.tg.notify_admins('Авторизовался')
 
         form_data = {
-            'login': self.turcode_login,
-            'password': self.turcode_password,
+            'login': self.db.cur_bot.turcode_login,
+            'password': self.db.cur_bot.turcode_pass,
             'authenticator': '',
         }
         try:
@@ -123,6 +120,7 @@ class API:
                 data=form_data,
                 headers=self.headers,
             )
+            print('TRY AUTH', request.headers.get('Set-Cookie'))
             auth_cookie = await self._extract_auth_cookie(request.headers.get('Set-Cookie'))
             if auth_cookie is not None:
                 self.auth_cookie = auth_cookie
@@ -443,21 +441,21 @@ class API:
         self.time_ending_notified_payouts = _time_ending_notified_payouts
         return payouts
 
-    async def get_stats(self) -> list:
-        webapp_list = os.getenv('WEBAPP_LIST', default=None)
-        if webapp_list is None:
-            return []
-
-        webapp_list = list(map(lambda l: l.split('::'), webapp_list.split(';')))
-
-        result = []
-        for ip, password in webapp_list:
-            try:
-                host_data = r.get(f'{ip}/webstats', headers={'Authorization': f'Bearer {password}'}).json()
-            except r.exceptions.RequestException as e:
-                self.logger.error(f'Ping {ip} error method webstats: {e}')
-                host_data = None
-
-            result.append(host_data)
-
-        return result
+    # async def get_stats(self) -> list:
+    #     webapp_list = os.getenv('WEBAPP_LIST', default=None)
+    #     if webapp_list is None:
+    #         return []
+    #
+    #     webapp_list = list(map(lambda l: l.split('::'), webapp_list.split(';')))
+    #
+    #     result = []
+    #     for ip, password in webapp_list:
+    #         try:
+    #             host_data = r.get(f'{ip}/webstats', headers={'Authorization': f'Bearer {password}'}).json()
+    #         except r.exceptions.RequestException as e:
+    #             self.logger.error(f'Ping {ip} error method webstats: {e}')
+    #             host_data = None
+    #
+    #         result.append(host_data)
+    #
+    #     return result
