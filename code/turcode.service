@@ -1,6 +1,6 @@
 [Service]
   Restart=on-failure
-  ExecStart=/bin/bash -c '/root/turcode/venv/bin/python /root/turcode/main.py & /root/turcode/venv/bin/gunicorn -w 4 --bind 0.0.0.0:8000 code.webapp:app'
+  ExecStart=/bin/bash -c '/root/turcode/venv/bin/python /root/turcode/main.py'
   WorkingDirectory=/root/turcode/
   StandardOutput=append:/root/turcode/log.log
   StandardError=append:/root/turcode/log_error.log
