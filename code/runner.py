@@ -24,11 +24,12 @@ class Runner:
         self.db = db
         self.api = api
         self.tg = tg
+        self.extra_update_last_fast_run = int(time.time())
+        self.extra_update_last_slow_run = int(time.time())
 
     async def fetch_turcode_api(self):
         try:
             while True:
-                # print('fetch_turcode_api', self.db.is_any_bot_active)
                 if not self.db.is_any_bot_active:
                     await asyncio.sleep(10)
                     continue
@@ -36,14 +37,14 @@ class Runner:
                 for payout in await self.api.load_payouts():
                     await self.api.claim_payout(payout)
 
-                await asyncio.sleep(0)
+                await asyncio.sleep(0.005)
         except asyncio.CancelledError:
             print('fetch_turcode_api cancelled')
 
     async def _extra_update_fast(self):
-        await self.db.load_bots()
         await self.api.check_claimed_payouts()
         await self.api.update_bot_claimed_payouts_count()
+        await self.db.load_bots()
 
         # Отправка уведомлений
         await self.tg.notify_bulk_admins(self.settings.notifications.admins)
@@ -56,22 +57,22 @@ class Runner:
     async def extra_update(self):
         try:
             while True:
-                # print('extra_update', self.db.is_any_bot_active)
                 if self.db.is_any_bot_active:
-                    await self.db.load_bots()
-
                     cur_time = int(time.time())
-                    if cur_time % 10 == 0:
+
+                    if cur_time - self.extra_update_last_fast_run >= 10:
                         await self._extra_update_fast()
-                    if cur_time % 30 == 0:
+                        self.extra_update_last_fast_run = cur_time
+                    if cur_time - self.extra_update_last_slow_run >= 30:
                         await self._extra_update_slow()
+                        self.extra_update_last_slow_run = cur_time
                 else:
                     await self._extra_update_fast()
                     await self._extra_update_slow()
                     await asyncio.sleep(5)
                     continue
 
-                await asyncio.sleep(0)
+                await asyncio.sleep(0.005)
         except asyncio.CancelledError:
             print('extra_update cancelled')
 

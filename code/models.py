@@ -102,7 +102,7 @@ class Bot(Base):
     async def set_claimed_payouts_limit(self, session: AsyncSession, claimed_payouts_limit: int):
         await session.execute(update(Bot).where(Bot.id == self.id).values(claimed_payouts_limit=claimed_payouts_limit))
 
-    async def set_auth_cookie(self, session: AsyncSession, auth_cookie: str):
+    async def set_auth_cookie(self, session: AsyncSession, auth_cookie: str | None):
         await session.execute(update(Bot).where(Bot.id == self.id).values(auth_cookie=auth_cookie))
 
 
@@ -136,13 +136,16 @@ class Payout(Base):
 
     created_at = Column(TIMESTAMP, server_default=func.current_timestamp())
 
+    async def set_is_gained_and_notified(self, session: AsyncSession, is_gained_and_notified: bool):
+        await session.execute(update(Payout).where(Payout.id == self.id).values(is_gained_and_notified=is_gained_and_notified))
+
     @classmethod
     async def get_not_gained_by_operation_id(cls, session: AsyncSession, operation_id: str) -> Sequence['Payout']:
         result = await session.execute(select(Payout).where(and_(
             cls.operation_id == operation_id,
             cls.action == PayoutActionEnum.SUCCESS.code,
-            not cls.is_gained_and_notified,
-        ).order_by(Payout.id.desc())))
+            cls.is_gained_and_notified.is_(False),
+        )).order_by(Payout.id.desc()))
         return result.scalars().all()
 
     # @classmethod

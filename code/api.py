@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 
 from code.db import DB
 from code.logger import Logger
-from code.models import Payout, PayoutActionEnum
+from code.models import Payout, PayoutActionEnum, Bot
 from code.settings import Settings
 from code.tg import Tg
 
@@ -29,7 +29,6 @@ class API:
     headers = {
         'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
     }
-    auth_cookie: str = None
     is_auth: bool = False
 
     def __init__(self, session: r.Session, settings: Settings, db: DB, tg: Tg, logger: Logger):
@@ -79,8 +78,7 @@ class API:
                     continue
 
                 for payout in payouts:
-                    payout.is_claimed = True
-                    session.add(payout)
+                    await payout.set_is_gained_and_notified(session, True)
 
                 payout = payouts[0]
                 success_msg = (
@@ -102,16 +100,19 @@ class API:
                 claimed_payouts_count = 0
             await self.db.cur_bot.set_claimed_payouts_count(session, claimed_payouts_count)
 
-    async def auth(self):
+    async def auth(self, bot: Bot = None) -> str | None:
+        if bot is None:
+            bot = self.db.cur_bot
+
         # Предотвращаем бесконечную авторизацию
-        if self.db.cur_bot.turcode_login is None or self.db.cur_bot.turcode_pass is None:
+        if bot.turcode_login is None or bot.turcode_pass is None:
             return
 
-        await self.tg.notify_admins('Авторизовался')
+        await self.tg.notify_admins(f'Пробую авторизовать бота {bot.bot_name}')
 
         form_data = {
-            'login': self.db.cur_bot.turcode_login,
-            'password': self.db.cur_bot.turcode_pass,
+            'login': bot.turcode_login,
+            'password': bot.turcode_pass,
             'authenticator': '',
         }
         try:
@@ -120,13 +121,10 @@ class API:
                 data=form_data,
                 headers=self.headers,
             )
-            print('TRY AUTH', request.headers.get('Set-Cookie'))
             auth_cookie = await self._extract_auth_cookie(request.headers.get('Set-Cookie'))
             if auth_cookie is not None:
-                self.auth_cookie = auth_cookie
-
                 async with self.settings.db_session() as session:
-                    await self.db.cur_bot.set_auth_cookie(session, auth_cookie)
+                    await bot.set_auth_cookie(session, auth_cookie)
                     await session.commit()
 
                 self.session.cookies.set('auth', auth_cookie)
@@ -135,6 +133,7 @@ class API:
             return
 
         self.is_auth = True
+        return auth_cookie
 
     async def get_payouts(self):
         if not self.is_auth:
@@ -179,7 +178,6 @@ class API:
 
             auth_cookie = await self._extract_auth_cookie(request.headers.get('Set-Cookie'))
             if auth_cookie is not None:
-                self.auth_cookie = auth_cookie
                 self.session.cookies.set('auth', auth_cookie)
         except r.exceptions.RequestException as e:
             self.logger.error('Request error:', e)
@@ -225,6 +223,10 @@ class API:
         if bot_to_claim.claimed_payouts_count >= bot_to_claim.claimed_payouts_limit:
             return False
 
+        auth_cookie = bot_to_claim.auth_cookie
+        if not auth_cookie:
+            auth_cookie = await self.auth(bot_to_claim)
+
         # # Чекаем забирался ли платеж другим ботом
         # with Session(self.settings.engine) as session, session.begin():
         #     all_bots_operation_payouts_count = Payout.get_count_by_operation_id(
@@ -242,7 +244,7 @@ class API:
 
         if bot_to_claim.id != self.db.cur_bot.id:
             session = r.Session()
-            session.cookies.set('auth', bot_to_claim.auth_cookie)
+            session.cookies.set('auth', auth_cookie)
         else:
             session = self.session
 
@@ -259,6 +261,12 @@ class API:
             # )
         except r.exceptions.RequestException as e:
             self.logger.error('Request error:', e)
+
+            async with self.settings.db_session() as session:
+                await bot_to_claim.set_auth_cookie(session, None)
+                await session.commit()
+            await self.db.load_bots()
+
             return False
 
         self.logger.info(request.status_code, request.text)
@@ -267,6 +275,12 @@ class API:
             request_data = request.json()
         except r.exceptions.JSONDecodeError as e:
             self.logger.error(f'Request error  {request.status_code} {request.text}:', e)
+
+            async with self.settings.db_session() as session:
+                await bot_to_claim.set_auth_cookie(session, None)
+                await session.commit()
+            await self.db.load_bots()
+
             return False
 
         def erow(row: str):
@@ -274,7 +288,7 @@ class API:
                 return None
             return row.encode('latin-1', 'ignore').decode('utf-8', 'ignore')
 
-        with Session(self.settings.engine) as session, session.begin():
+        async with self.settings.db_session() as session:
             payout_row = Payout(
                 operation_id=payout.get('operation_id', ''),
                 user_id=payout.get('user_id', ''),
@@ -306,14 +320,15 @@ class API:
 
                 payout_row.action = PayoutActionEnum.SUCCESS.code
                 session.add(payout_row)
-                session.flush()
+                await session.commit()
 
-                self.claimed_payouts_count += 1
+                if bot_to_claim.id == self.db.cur_bot.id:
+                    self.claimed_payouts_count += 1
                 return True
             else:
                 payout_row.action = PayoutActionEnum.FAIL.code
                 session.add(payout_row)
-                session.flush()
+                await session.commit()
 
         return False
 
@@ -349,11 +364,10 @@ class API:
 
     # Получаем обработанные платежи
     async def load_payouts(self):
-        print(time.time(), 'load_payouts')
         payouts_count_limit = self.db.cur_bot.claimed_payouts_limit
         if self.claimed_payouts_count is None or self.claimed_payouts_count >= payouts_count_limit:
             self.claimed_payouts_count = 0
-            await self.tg.notify_admins('Обновляю claimed_payouts_count')
+            # await self.tg.notify_admins('Обновляю claimed_payouts_count')
             all_payouts = await self.get_payouts()
             for row in all_payouts:
                 if row[3]:
@@ -434,7 +448,7 @@ class API:
             if not bank_is_correct and not (len(payout['card']) == 11 or len(payout['phone']) == 11):
                 continue
 
-            self.logger.info(f'Payout found: {payout}')
+            # self.logger.info(f'Payout found: {payout}')
             # self.settings.notifications.admins.append(f'Найден платеж ({time.time()})\n\n{self.dict_to_str(payout)}')
             payouts.append(payout)
 

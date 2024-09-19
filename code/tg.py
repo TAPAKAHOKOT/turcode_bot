@@ -133,6 +133,9 @@ class Tg:
 
         text = ' '.join([str(s) for s in args])
         for watcher in self.db.cur_bot.users:
+            if watcher.is_admin:
+                continue
+
             await self.send_msg(watcher.chat_id, text)
 
     async def notify_bulk_admins(self, notifications):

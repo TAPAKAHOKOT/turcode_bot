@@ -14,5 +14,5 @@ class Logger:
     def error(self, *args):
         self.log('ERROR', *args)
 
-        if self.tg is not None:
-            self.tg.notify_admins('ERROR', *args)
+        # if self.tg is not None:
+        #     self.tg.notify_admins('ERROR', *args)
