@@ -191,7 +191,7 @@ class Tg:
         await message.answer(
             f'Штука запущена: {'да' if self.db.cur_bot.is_running else 'нет'}\n'
             f'Мин. сумма резервирования: {self.format_number(self.db.cur_bot.min_amount)}\n'
-            f'Макс. сумма резервирования: {self.format_number(self.db.cur_bot.min_amount)}\n'
+            f'Макс. сумма резервирования: {self.format_number(self.db.cur_bot.max_amount)}\n'
             f'Лимит кол-ва платежей: {self.format_number(self.db.cur_bot.claimed_payouts_limit)}'
         )
 
