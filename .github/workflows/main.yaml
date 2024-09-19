@@ -11,36 +11,36 @@ jobs:
     strategy:
       matrix:
         server:
-          - name: server1
-            ip_secret: SERVER_1_IP
-            pass_secret: SERVER_1_PASS
+#          - name: server1
+#            ip_secret: SERVER_1_IP
+#            pass_secret: SERVER_1_PASS
           - name: server2
             ip_secret: SERVER_2_IP
             pass_secret: SERVER_2_PASS
-          - name: server3
-            ip_secret: SERVER_3_IP
-            pass_secret: SERVER_3_PASS
+#          - name: server3
+#            ip_secret: SERVER_3_IP
+#            pass_secret: SERVER_3_PASS
           - name: server4
             ip_secret: SERVER_4_IP
             pass_secret: SERVER_4_PASS
-          - name: server5
-            ip_secret: SERVER_5_IP
-            pass_secret: SERVER_5_PASS
-          - name: server6
-            ip_secret: SERVER_6_IP
-            pass_secret: SERVER_6_PASS
-          - name: server7
-            ip_secret: SERVER_7_IP
-            pass_secret: SERVER_7_PASS
+#          - name: server5
+#            ip_secret: SERVER_5_IP
+#            pass_secret: SERVER_5_PASS
+#          - name: server6
+#            ip_secret: SERVER_6_IP
+#            pass_secret: SERVER_6_PASS
+#          - name: server7
+#            ip_secret: SERVER_7_IP
+#            pass_secret: SERVER_7_PASS
           - name: server8
             ip_secret: SERVER_8_IP
             pass_secret: SERVER_8_PASS
-          - name: server9
-            ip_secret: SERVER_9_IP
-            pass_secret: SERVER_9_PASS
-          - name: server10
-            ip_secret: SERVER_10_IP
-            pass_secret: SERVER_10_PASS
+#          - name: server9
+#            ip_secret: SERVER_9_IP
+#            pass_secret: SERVER_9_PASS
+#          - name: server10
+#            ip_secret: SERVER_10_IP
+#            pass_secret: SERVER_10_PASS
 
     steps:
       - name: Checkout code
