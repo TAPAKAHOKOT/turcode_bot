@@ -92,13 +92,14 @@ class Tg:
         self.routers.base.message.register(self._stats_command, Command('stats'))
 
         # self.routers.admin.message.register(self._webstats_command, Command('webstats'))
-        self.routers.admin.message.register(self._payout_command, Command('payout'))
-        self.routers.admin.message.register(self._set_min_amount_command, Command('set_min_amount'))
-        self.routers.admin.message.register(self._set_max_amount_command, Command('set_max_amount'))
-        self.routers.admin.message.register(self._set_payouts_limit_command, Command('set_payouts_limit'))
-        self.routers.admin.message.register(self._add_user_command, Command('add_user'))
+        self.routers.base.message.register(self._payout_command, Command('payout'))
+        self.routers.base.message.register(self._set_min_amount_command, Command('set_min_amount'))
+        self.routers.base.message.register(self._set_max_amount_command, Command('set_max_amount'))
+        self.routers.base.message.register(self._set_payouts_limit_command, Command('set_payouts_limit'))
 
+        self.routers.admin.message.register(self._add_user_command, Command('add_user'))
         self.routers.admin.message.register(self._list_bots, Command('bots_users'))
+
         self.routers.admin.callback_query.register(self._show_users_in_bot, BotCallback.filter())
         self.routers.admin.callback_query.register(self._back_to_list_bots, F.data == 'to_list_bots')
         self.routers.admin.callback_query.register(self._toggle_user_in_bot, UserCallback.filter())
